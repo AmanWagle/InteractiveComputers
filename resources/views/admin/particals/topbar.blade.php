@@ -64,7 +64,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        {{-- <li><a class="dropdown-item" href="javascript:void(0)"
+                        <li><a class="dropdown-item" href="javascript:void(0)"
                                 onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();"><i
                                     class="icon-mid bi bi-box-arrow-left me-2">
                                 </i>
@@ -73,7 +73,7 @@
                         <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST"
                             class="d-none">
                             @csrf
-                        </form> --}}
+                        </form>
                     </ul>
                 </div>
             </div>

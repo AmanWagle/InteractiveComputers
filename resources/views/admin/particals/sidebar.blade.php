@@ -12,7 +12,6 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'dashboard' ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
@@ -21,21 +20,23 @@
                     </a>
                 </li>
 
-                {{-- <li class="sidebar-item {{ request()->segment(2) === 'pages' ? 'active' : '' }}">
+                {{-- <li class="sidebar-title">Menu</li>
+
+                <li class="sidebar-item {{ request()->segment(2) === 'pages' ? 'active' : '' }}">
                     <a href="{{ route('admin.pages.index') }}" class='sidebar-link'>
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Pages</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-title">E-commerce</li>
 
-                <li class="sidebar-item {{ request()->segment(2) === 'category' ? 'active' : '' }} ">
+                {{-- <li class="sidebar-item {{ request()->segment(2) === 'category' ? 'active' : '' }} ">
                     <a href="{{ route('admin.category.index') }}" class='sidebar-link'>
                         <i class="fas fa-dice"></i>
                         <span>Categories</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item {{ request()->segment(2) === 'brand' ? 'active' : '' }} ">
                     <a href="{{ route('admin.brand.index') }}" class='sidebar-link'>
@@ -44,7 +45,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->segment(2) === 'product' ? 'active' : '' }} ">
+                {{-- <li class="sidebar-item {{ request()->segment(2) === 'product' ? 'active' : '' }} ">
                     <a href="{{ route('admin.product.index') }}" class='sidebar-link'>
                         <i class="bi bi-bag-fill"></i>
                         <span>Products</span>

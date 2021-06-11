@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,11 @@ Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.lo
 
 Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('brand/get-all', [BrandController::class, 'getAllBrands'])->name('brand.get-all');
+    Route::put('brand/{id}/toggle-is_featured', [BrandController::class, 'updateIsFeatured'])->name('brand.update-is_featured');
+    Route::resource('/brand', BrandController::class);
+
 });
 
 // Auth::routes();

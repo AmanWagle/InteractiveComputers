@@ -18,7 +18,7 @@ const adminNotifications = {
 
 const globalFunctions = {
     methods : {
-        converObjectToFormData(my_obj) {
+        convertObjectToFormData(my_obj) {
             let formData = new FormData();
             for(let index in my_obj) {
                 if(my_obj[index]) {
