@@ -15,3 +15,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 require('./bootstrap.bundle.min');
 require('./perfect-scrollbar.min');
 require('./main');
+
+

@@ -31,12 +31,12 @@
 
                 <li class="sidebar-title">E-commerce</li>
 
-                {{-- <li class="sidebar-item {{ request()->segment(2) === 'category' ? 'active' : '' }} ">
-                    <a href="{{ route('admin.category.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->segment(2) === 'product-category' ? 'active' : '' }} ">
+                    <a href="{{ route('admin.product-category.index') }}" class='sidebar-link'>
                         <i class="fas fa-dice"></i>
                         <span>Categories</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'brand' ? 'active' : '' }} ">
                     <a href="{{ route('admin.brand.index') }}" class='sidebar-link'>

@@ -19,6 +19,9 @@ Vue.mixin(globalFunctions)
 Vue.component('admin-brands', require('./components/admin/brand/Brands.vue').default);
 Vue.component('brand-form', require('./components/admin/brand/BrandForm.vue').default);
 
+Vue.component('admin-product-categories', require('./components/admin/product_category/ProductCategories.vue').default);
+Vue.component('product-category-form', require('./components/admin/product_category/ProductCategoryForm.vue').default);
+
 const app = new Vue({
     el: '#app',
 })
