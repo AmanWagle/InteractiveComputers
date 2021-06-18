@@ -47,7 +47,7 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|unique:product_categories',
             'parent_id' => 'numeric',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

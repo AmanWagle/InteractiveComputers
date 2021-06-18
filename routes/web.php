@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//routes for admin
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.post-login');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
@@ -36,6 +38,9 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
     Route::get('brand/get-all', [BrandController::class, 'getAllBrands'])->name('brand.get-all');
     Route::put('brand/{id}/toggle-is_featured', [BrandController::class, 'updateIsFeatured'])->name('brand.update-is_featured');
     Route::resource('/brand', BrandController::class);
+
+    Route::get('product/get-all', [ProductController::class, 'getAllProducts'])->name('product.get-all');
+    Route::resource('/product', ProductController::class);
 
 });
 

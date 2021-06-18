@@ -158,7 +158,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $brand = Brand::find($id);
-        if(!$brand) return response()->json(['success' => false, 'message' => "Brand doesn't exists."]);
+        if (!$brand) return response()->json(['success' => false, 'message' => "Brand doesn't exists."]);
 
         $brand->delete();
         return response()->json(['success' => true, 'message' => "Brand deleted successfully"]);

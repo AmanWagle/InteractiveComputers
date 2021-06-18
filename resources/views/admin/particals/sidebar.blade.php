@@ -29,7 +29,7 @@
                     </a>
                 </li> --}}
 
-                <li class="sidebar-title">E-commerce</li>
+                <li class="sidebar-title">eCommerce Catalog</li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'product-category' ? 'active' : '' }} ">
                     <a href="{{ route('admin.product-category.index') }}" class='sidebar-link'>
@@ -45,12 +45,12 @@
                     </a>
                 </li>
 
-                {{-- <li class="sidebar-item {{ request()->segment(2) === 'product' ? 'active' : '' }} ">
+                <li class="sidebar-item {{ request()->segment(2) === 'product' ? 'active' : '' }} ">
                     <a href="{{ route('admin.product.index') }}" class='sidebar-link'>
                         <i class="bi bi-bag-fill"></i>
                         <span>Products</span>
                     </a>
-                </li> --}}
+                </li>
 
             </ul>
         </div>
