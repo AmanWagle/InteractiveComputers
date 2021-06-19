@@ -1,7 +1,5 @@
 require('./bootstrap');
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
 window.Vue = require('vue').default;
 
 import Vue from 'vue';
@@ -11,9 +9,6 @@ import { adminNotifications, globalFunctions } from './mixins'
 
 import VeeValidate from "vee-validate";
 Vue.use(VeeValidate);
-
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
 
 Vue.mixin(adminNotifications)
 Vue.mixin(globalFunctions)

@@ -47,15 +47,13 @@
                     >
                   </div>
                 </div>
+
                 <div class="col-12">
                   <div class="form-group">
                     <label for="brand-description">Description</label>
-                    <textarea
+                    <vue-editor
                       id="brand-description"
-                      class="form-control"
                       name="description"
-                      placeholder="Description"
-                      rows="3"
                       v-validate="'required'"
                       v-model="page.description"
                     />
@@ -164,7 +162,10 @@
 
 <script>
 import { renderServerErrors } from "../../utils";
+import { VueEditor } from "vue2-editor";
+
 export default {
+  components: { VueEditor },
   props: ["page_details"],
   data() {
     return {
