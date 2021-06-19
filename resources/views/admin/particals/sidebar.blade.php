@@ -52,6 +52,27 @@
                     </a>
                 </li>
 
+                <li class="sidebar-title">Website Section</li>
+                <li class="sidebar-item {{ request()->segment(2) === 'page' ? 'active' : '' }} has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-file-earmark-code-fill"></i>
+                        <span>Pages</span>
+                    </a>
+                    <ul class="submenu d-block">
+                        <li class="submenu-item {{ request()->segment(2) === 'page' ? 'active' : '' }}">
+                            <a href="{{ route('admin.page.index') }}">All Pages</a>
+                        </li>
+
+                        <li class="submenu-item ">
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="#">Page 2</a>
+                        </li>
+                    </ul>
+                </li>
+
+
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

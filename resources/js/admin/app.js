@@ -27,6 +27,11 @@ Vue.component('product-category-form', require('./components/product_category/Pr
 Vue.component('admin-products', require('./components/product/Products.vue').default);
 Vue.component('product-form', require('./components/product/ProductForm.vue').default);
 
+Vue.component('admin-pages', require('./components/website_page/Pages.vue').default);
+Vue.component('page-form', require('./components/website_page/PageForm.vue').default);
+
+Vue.component('admin-profile', require('./components/profile/Profile.vue').default);
+
 const app = new Vue({
     el: '#app',
 })

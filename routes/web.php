@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
@@ -41,6 +42,9 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 
     Route::get('product/get-all', [ProductController::class, 'getAllProducts'])->name('product.get-all');
     Route::resource('/product', ProductController::class);
+
+    Route::get('page/get-all', [PageController::class, 'getAllPages'])->name('page.get-all');
+    Route::resource('/page', PageController::class);
 
 });
 
