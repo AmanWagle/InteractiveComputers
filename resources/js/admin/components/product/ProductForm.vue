@@ -228,40 +228,45 @@
           >
             <div class="card-body">
               <div class="col-md-12 form-group">
+                <button
+                  class="btn btn-outline-primary"
+                  @click="$refs.imageInput.click()"
+                >
+                  <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Upload Image</button
+                >&nbsp;
+                <label
+                  v-if="this.product_details.product_images"
+                  class="text-muted"
+                >
+                  *Existing images will be replaced if you choose to upload new
+                  images.
+                </label>
                 <div class="input-group mb-3">
                   <input
+                    ref="imageInput"
                     type="file"
-                    class="form-control"
-                    id="productImage"
+                    class="d-none form-control"
                     multiple
+                    accept="image/*"
                     v-on:change="onImageUpload"
                   />
                 </div>
-                <!-- <button
-                      class="btn btn-secondary"
-                      @click="$refs.imageInput.click()"
-                    >
-                      <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Upload
-                      Image
-                    </button>
-                <input
-                  ref="imageInput"
-                  type="file"
-                  id="brand-logo"
-                  class="form-control d-none"
-                  v-on:change="onImageUpload"
-                /> -->
               </div>
 
               <div class="col-12">
                 <div class="row" v-if="image_previews.length">
-                  <div class="col-md-2 col-6 my-2" v-for="(item, index) in image_previews" :key="index">
-                    <img
-                      :src="item"
-                      class="img-thumbnail"
-                      width="100%"
+                  <div
+                    class="col-md-2 col-6 my-2 input-image-container"
+                    v-for="(item, index) in image_previews"
+                    :key="index"
+                  >
+                    <img :src="item" class="img-thumbnail" width="100%" />
+                    <button
+                      class="btn btn-sm btn-danger rounded-circle"
                       @click="onImageRemove(index)"
-                    />
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -450,17 +455,15 @@ export default {
         status: true,
         is_featured: false,
 
-        product_images: [],
-
         meta_title: "",
         meta_keywords: "",
         meta_description: "",
       },
+      product_images: [],
       image_previews: [],
 
       categories: [],
       brands: [],
-      // errors: {},
     };
   },
 
@@ -470,15 +473,20 @@ export default {
 
     if (this.product_details) {
       this.product = this.product_details;
+      this.image_previews = this.product_details.images_url;
     }
   },
 
   methods: {
     onImageUpload(e) {
+      if (this.product_details) {
+        this.product_images = [];
+        this.image_previews = [];
+      }
       let images = e.target.files;
       Array.from(images).forEach((image) => {
-        if (this.product.product_images.length < 6) {
-          this.product.product_images.push(image);
+        if (this.product_images.length < 6) {
+          this.product_images.push(image);
           let image_url = URL.createObjectURL(image);
           this.image_previews.push(image_url);
         } else {
@@ -489,6 +497,8 @@ export default {
 
     onImageRemove(index) {
       console.log(index);
+      this.product_images.splice(index, 1);
+      this.image_previews.splice(index, 1);
     },
 
     async getCategories() {
@@ -502,9 +512,12 @@ export default {
     },
 
     async saveProduct() {
-      console.log(this.product.product_images);
       try {
         let payload = this.convertObjectToFormData(this.product);
+
+        this.product_images.forEach(function (image) {
+          payload.append("product_image[]", image);
+        });
         let url = `/admin/product`;
 
         if (this.product_details) {

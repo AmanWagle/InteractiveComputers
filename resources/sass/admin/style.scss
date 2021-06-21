@@ -1,0 +1,13 @@
+.input-image-container {
+    position: relative;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.input-image-container .btn {
+    position: absolute;
+    top: 3%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+}

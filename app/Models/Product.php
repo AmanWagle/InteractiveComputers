@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $appends = ['product_images_array', 'images_url'];
+
     protected $fillable = [
         'name',
         'slug',
@@ -17,12 +19,12 @@ class Product extends Model
         'description',
         'stock',
         'original_price',
-        'discount', 
+        'discount',
         'selling_price',
         'category_id',
         'brand_id',
         'product_images',
-        'status', 
+        'status',
         'is_featured',
         'specifications',
         'weight',
@@ -33,4 +35,25 @@ class Product extends Model
         'meta_keywords',
         'meta_description'
     ];
+
+    public function getProductImagesArrayAttribute()
+    {
+        if ($this->product_images) {
+            return explode(', ', $this->product_images);
+        }
+        return [];
+    }
+
+    public function getImagesUrlAttribute()
+    {
+        if ($this->product_images) {
+            $images = $this->product_images_array;
+            $images_url = array();
+            foreach ($images as $image) {
+                $images_url[] = url("/storage/images/uploads/{$image}");
+            }
+            return $images_url;
+        }
+        return [];
+    }
 }

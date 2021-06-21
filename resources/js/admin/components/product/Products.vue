@@ -33,10 +33,16 @@
                       <b>{{ index + 1 }}</b>
                     </td>
                     <td>
-                      <!-- <img
-                        height="70px"
-                        :src="`/storage/images/uploads/${brand.logo}`"
-                      /> -->
+                      <img
+                        v-if="product.product_images"
+                        height="90px"
+                        :src="`/storage/images/uploads/${product.product_images_array[0]}`"
+                      />
+                      <img
+                        v-else
+                        height="90px"
+                        src="/storage/images/static/empty-product-image.jpg"
+                      />
                     </td>
                     <td>
                       <b>{{ product.name }}</b>

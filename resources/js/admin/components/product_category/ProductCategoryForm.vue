@@ -84,7 +84,7 @@
                     <label for="category-icon">Category's Icon</label>
                     <div class="col-sm-10">
                       <button
-                        class="btn btn-secondary"
+                        class="btn btn-outline-primary"
                         @click="$refs.imageInput.click()"
                       >
                         <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Upload
