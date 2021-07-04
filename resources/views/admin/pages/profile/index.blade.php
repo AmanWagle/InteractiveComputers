@@ -16,5 +16,5 @@
             </div>
         </div>
     </div>
-    <admin-product-categories></admin-product-categories>
+    <admin-profile></admin-profile>
 @endsection

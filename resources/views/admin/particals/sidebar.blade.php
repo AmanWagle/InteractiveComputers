@@ -79,6 +79,12 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ request()->segment(2) === 'profile' ? 'active' : '' }} ">
+                    <a href="{{ route('admin.profile.show') }}" class='sidebar-link'>
+                        <i class="bi bi-bag-fill"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
 
             </ul>
         </div>
