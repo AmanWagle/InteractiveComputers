@@ -72,6 +72,13 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item {{ request()->segment(2) === 'banner' ? 'active' : '' }} ">
+                    <a href="{{ route('admin.banner.index') }}" class='sidebar-link'>
+                        <i class="bi bi-bag-fill"></i>
+                        <span>Banners</span>
+                    </a>
+                </li>
+
 
             </ul>
         </div>

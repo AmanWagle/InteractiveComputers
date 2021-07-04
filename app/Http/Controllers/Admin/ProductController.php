@@ -155,9 +155,10 @@ class ProductController extends Controller
         $request->validate($rules);
 
         $product = Product::find($id);
-
+        $image_name_string = $product->product_images;
+        
         if ($request->hasFile('product_image')) {
-            //deleteing existing image if new images are uploaded.
+            //deleting existing image if new images are uploaded.
             foreach ($product->product_images_array as $image) {
                 $existing_image_path = "/images/uploads/{$image}";
                 $this->deleteFile($existing_image_path);

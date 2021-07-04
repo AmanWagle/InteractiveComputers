@@ -25,6 +25,9 @@ Vue.component('product-form', require('./components/product/ProductForm.vue').de
 Vue.component('admin-pages', require('./components/website_page/Pages.vue').default);
 Vue.component('page-form', require('./components/website_page/PageForm.vue').default);
 
+Vue.component('admin-banners', require('./components/banner/Banners.vue').default);
+Vue.component('banner-details', require('./components/banner/BannerDetails.vue').default);
+
 Vue.component('admin-profile', require('./components/profile/Profile.vue').default);
 
 const app = new Vue({

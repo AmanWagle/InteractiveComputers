@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BannerImageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductCategoryController;
@@ -45,6 +47,12 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 
     Route::get('page/get-all', [PageController::class, 'getAllPages'])->name('page.get-all');
     Route::resource('/page', PageController::class);
+
+    Route::get('banner/get-all', [BannerController::class, 'getAllBanners'])->name('banner.get-all');
+    Route::resource('/banner', BannerController::class);
+
+    Route::post('banner/{banner_id}/banner-image', [BannerImageController::class, 'store'])->name('banner.banner-image.store');
+    Route::delete('banner/{banner_id}/banner-image/{banner_image_id}', [BannerImageController::class, 'destroy'])->name('banner.banner-image.delete');
 
 });
 
