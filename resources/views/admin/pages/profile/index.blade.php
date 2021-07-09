@@ -16,5 +16,5 @@
             </div>
         </div>
     </div>
-    <admin-profile></admin-profile>
+    <admin-profile :admin_details="{{ json_encode($admin_detail ?? '') }}"></admin-profile>
 @endsection

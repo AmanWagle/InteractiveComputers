@@ -37,6 +37,8 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.show');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
     Route::get('product-category/get-all', [ProductCategoryController::class, 'getAllCategories'])->name('product-category.get-all');
     Route::put('product-category/{id}/toggle-status-or-featured', [ProductCategoryController::class, 'updateStatusOrFeatured'])->name('brand.update-status-or-featured');
