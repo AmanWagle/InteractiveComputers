@@ -18,6 +18,11 @@ class ProductCategory extends Model
         return $this->belongsTo(ProductCategory::class, 'parent_id');
     }
 
+    public function children()
+    {
+        return $this->hasMany(ProductCategory::class, 'parent_id')->with('children:id,name,icon,parent_id,slug');
+    }
+
     public function getIconUrlAttribute()
     {
         return url("/storage/images/uploads/{$this->icon}");
@@ -42,5 +47,4 @@ class ProductCategory extends Model
         $parent_level = $this->parent_level;
         return ($this->parent_id) ? $parent_level . ' / ' . $this->name  : $this->name;
     }
-
 }

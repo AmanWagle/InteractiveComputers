@@ -10866,7 +10866,7 @@ button:focus {
     margin-left: 2rem;
 }
 .product-details-tab .tab-content {
-    border: 0.1rem solid #dadada;
+    border-top: 0.1rem solid #dadada;
     margin-top: -0.1rem;
     border-radius: 0.3rem;
 }
@@ -16337,3 +16337,4 @@ button:focus {
     content: "\f7e3";
 }
 /*# sourceMappingURL=style.css.map */
+

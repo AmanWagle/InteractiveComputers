@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\ProductDetailController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -24,16 +25,13 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //routes for admin
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.post-login');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function() {
+Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.show');
@@ -59,9 +57,13 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 
     Route::post('banner/{banner_id}/banner-image', [BannerImageController::class, 'store'])->name('banner.banner-image.store');
     Route::delete('banner/{banner_id}/banner-image/{banner_image_id}', [BannerImageController::class, 'destroy'])->name('banner.banner-image.delete');
-
 });
 
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Website Routes
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/product/{product:slug}/', [ProductDetailController::class, 'index'])->name('product.detail');

@@ -18,4 +18,3 @@ require('./jquery.waypoints.min.js');
 require('./owl.carousel.min.js');
 //main js
 require('./main');
-require('./demo-13');

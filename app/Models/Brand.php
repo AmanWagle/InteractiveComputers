@@ -13,6 +13,7 @@ class Brand extends Model
 
     protected $fillable = ['name', 'slug', 'status', 'description', 'logo', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description'];
 
+
     public function getLogoUrlAttribute()
     {
         return url("/storage/images/uploads/{$this->logo}");

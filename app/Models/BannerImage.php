@@ -9,5 +9,12 @@ class BannerImage extends Model
 {
     use HasFactory;
 
+    protected $appends = ['banner_image_url'];
+
     protected $fillable = ['name', 'link', 'status', 'banner_id'];
+
+    public function getBannerImageUrlAttribute()
+    {
+        return url("/storage/images/uploads/{$this->name}");
+    }
 }

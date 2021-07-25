@@ -36,6 +36,16 @@ class Product extends Model
         'meta_description'
     ];
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id');
+    }
+
     public function getProductImagesArrayAttribute()
     {
         if ($this->product_images) {
