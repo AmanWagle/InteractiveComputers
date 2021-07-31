@@ -30,6 +30,8 @@ Vue.component('banner-details', require('./components/banner/BannerDetails.vue')
 
 Vue.component('admin-profile', require('./components/profile/Profile.vue').default);
 
+Vue.component('admin-reviews', require('./components/review/Reviews.vue').default);
+
 const app = new Vue({
     el: '#app',
 })

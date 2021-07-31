@@ -52,6 +52,14 @@
                     </a>
                 </li>
 
+                <li class="sidebar-title">Customer Response</li>
+                <li class="sidebar-item {{ request()->segment(2) === 'review' ? 'active' : '' }} ">
+                    <a href="{{ route('admin.review.index') }}" class='sidebar-link'>
+                        <i class="fas fa-dice"></i>
+                        <span>Product Reviews</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-title">Website Section</li>
                 <li class="sidebar-item {{ request()->segment(2) === 'page' ? 'active' : '' }} has-sub">
                     <a href="#" class='sidebar-link'>

@@ -10,7 +10,7 @@ class ProductDetailController extends Controller
 {
     public function index(Product $product)
     {
-        $product->load('brand', 'category');
+        $product->load('brand', 'category', 'reviews.user');
         return view('website.pages.product-detail', compact('product'));
     }
 }

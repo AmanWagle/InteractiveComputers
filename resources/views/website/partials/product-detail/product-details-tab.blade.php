@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        @include('website.partials.product-detail.product-review', ['product_specification' => $product->product_code])
+        @include('website.partials.product-detail.product-review', ['product' => $product])
 
     </div>
 </div><!-- End .product-details-content -->

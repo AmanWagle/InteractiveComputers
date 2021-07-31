@@ -9,8 +9,12 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductDetailController;
+use App\Http\Controllers\Website\RatingReviewController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -57,13 +61,21 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 
     Route::post('banner/{banner_id}/banner-image', [BannerImageController::class, 'store'])->name('banner.banner-image.store');
     Route::delete('banner/{banner_id}/banner-image/{banner_image_id}', [BannerImageController::class, 'destroy'])->name('banner.banner-image.delete');
+
+    Route::get('review', [ReviewController::class, 'index'])->name('review.index');
+    Route::put('review/{id}/toggle-status', [ReviewController::class, 'updateStatus'])->name('review.update-status');
+    Route::get('review/get-all', [ReviewController::class, 'getAllReviews'])->name('review.get-all');
 });
 
-// Auth::routes();
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 //Website Routes
+Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/product/{product:slug}/', [ProductDetailController::class, 'index'])->name('product.detail');
+
+Route::get('/product/{product_id}/user-review', [RatingReviewController::class, 'checkIfReviewExists'])->middleware('auth:web');
+Route::resource('/product/{product_id}/review', RatingReviewController::class)->middleware('auth:web');

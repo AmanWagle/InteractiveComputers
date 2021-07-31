@@ -6,13 +6,12 @@
         @endif
 
         <a href="product.html">
-            <img src="{{ $product->images_url[0] }}" alt="Product image"
-                class="product-image">
+            <img src="{{ $product->images_url[0] }}" alt="Product image" class="product-image">
         </a>
 
         <div class="product-action-vertical">
-            <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
-                title="Quick view"><span>Quick view</span></a>
+            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+                    view</span></a>
         </div>
 
         <div class="product-action">
@@ -25,7 +24,8 @@
         <div class="product-cat">
             <a href="#">Furniture</a>
         </div>
-        <h3 class="product-title"><a href="{{ route('product.detail', ['product' => $product->slug]) }}">{{ $product->name }}</a></h3>
+        <h3 class="product-title"><a
+                href="{{ route('product.detail', ['product' => $product->slug]) }}">{{ $product->name }}</a></h3>
 
         <div class="product-price">
 
@@ -38,10 +38,9 @@
         </div>
         <div class="ratings-container">
             <div class="ratings">
-                <div class="ratings-val" style="width: 100%;"></div>
-
+                <div class="ratings-val" style="width: {{ ($product->average_rating / 5) * 100 }}%"></div>
             </div>
-            <span class="ratings-text">( 2 Reviews )</span>
+            <span class="ratings-text">( {{ count($product->reviews) }} Reviews )</span>
         </div>
     </div>
 </div>

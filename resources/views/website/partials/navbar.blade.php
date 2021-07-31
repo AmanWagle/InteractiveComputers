@@ -35,8 +35,19 @@
                                 </div><!-- End .header-dropdown -->
                             </li>
                             <li class="login">
-                                <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
+                                @auth
+                                    <a href="javascript:void(0)"
+                                        onclick="event.preventDefault(); document.getElementById('user-logout-form').submit();">
+                                        Logout</a>
+                                @endauth
+
+                                @guest
+                                    <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
+                                @endguest
                             </li>
+                            <form id="user-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->

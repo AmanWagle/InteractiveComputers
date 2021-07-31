@@ -1,83 +1,102 @@
 <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
+
+    @guest
+        <div class="reviews d-flex justify-content-center">
+            <div class="row no-gutters ">
+                <b>Login to post review. &nbsp;<a href="#signin-modal" data-toggle="modal">Sign in</a></b>
+            </div>
+        </div>
+    @endguest
+
+    @auth
+        @php
+            $user_review = \App\Models\RatingReview::where('user_id', auth()->user()->id)
+                ->where('product_id', $product->id)
+                ->first();
+        @endphp
+        @if ($user_review)
+            <div class="reviews">
+                <h3>Your Review</h3>
+                <div class="review your-review">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex" style="justify-content: space-between;">
+                                <h4>{{ $user_review->review_summary }}</h4>
+                                <div class="ratings">
+                                    <div class="ratings-val" data-rating="{{ $user_review->rating_percentage }}"></div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>
+                                    {{ $user_review->review }}
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="review-date">{{ $user_review->created_at->diffForHumans() }}</span>
+                                <div>
+                                    @if ($user_review->status)
+                                        <span class="badge rounded-pill bg-success text-white"
+                                            style="font-size: 14px;">Posted</span>
+                                    @else
+                                        <span class="badge rounded-pill bg-dark text-white" style="font-size: 14px;">In
+                                            Review</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            {{-- vue component for rating --}}
+            <rating-review :product_id="{{ $product->id }}"></rating-review>
+        @endif
+    @endauth
+
+    <hr />
+
     <div class="reviews">
         <h3>Ratings and Reviews</h3>
-
-        <div>
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+        @if (!count($product->reviews))
+            <div class="reviews d-flex justify-content-center">
+                <div class="row no-gutters ">
+                    <b>No review yet. Be the first to review this product.</b>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        @else
+            @foreach ($product->reviews as $review)
+                <div class="review">
+                    <div class="row no-gutters">
+                        <div class="col-2">
+                            <h4><a href="#">{{ $review->user->name }}</a></h4>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div class="ratings-val" data-rating="{{ $review->rating_percentage }}"></div>
+                                </div>
+                            </div>
+                            <span class="review-date">{{ $review->created_at->diffForHumans() }}</span>
+                        </div>
+                        <div class="col-10">
+                            <h4>{{ $review->review_summary }}</h4>
+                            <div class="review-content">
+                                <p>
+                                    {{ $review->review }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
+            @endforeach
+        @endif
 
-        <hr>
+    </div>
+</div>
 
-        <div class="review">
-            <div class="row no-gutters">
-                <div class="col-auto">
-                    <h4><a href="#">Samanta J.</a></h4>
-                    <div class="ratings-container">
-                        <div class="ratings">
-                            <div class="ratings-val" style="width: 80%;"></div>
-                            <!-- End .ratings-val -->
-                        </div><!-- End .ratings -->
-                    </div><!-- End .rating-container -->
-                    <span class="review-date">6 days ago</span>
-                </div><!-- End .col -->
-                <div class="col">
-                    <h4>Good, perfect size</h4>
-
-                    <div class="review-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum
-                            dolores
-                            assumenda asperiores facilis porro reprehenderit animi culpa atque
-                            blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem
-                            fugit
-                            beatae quae voluptas!</p>
-                    </div><!-- End .review-content -->
-
-                    <div class="review-action">
-                        <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
-                        <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                    </div><!-- End .review-action -->
-                </div><!-- End .col-auto -->
-            </div><!-- End .row -->
-        </div><!-- End .review -->
-
-        <div class="review">
-            <div class="row no-gutters">
-                <div class="col-auto">
-                    <h4><a href="#">John Doe</a></h4>
-                    <div class="ratings-container">
-                        <div class="ratings">
-                            <div class="ratings-val" style="width: 100%;"></div>
-                            <!-- End .ratings-val -->
-                        </div><!-- End .ratings -->
-                    </div><!-- End .rating-container -->
-                    <span class="review-date">5 days ago</span>
-                </div><!-- End .col -->
-                <div class="col">
-                    <h4>Very good</h4>
-
-                    <div class="review-content">
-                        <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis
-                            laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi,
-                            quas
-                            iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                    </div><!-- End .review-content -->
-
-                    <div class="review-action">
-                        <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
-                        <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                    </div><!-- End .review-action -->
-                </div><!-- End .col-auto -->
-            </div><!-- End .row -->
-        </div><!-- End .review -->
-    </div><!-- End .reviews -->
-</div><!-- .End .tab-pane -->
+<script>
+    window.onload = function() {
+        $('.ratings-val').each(function() {
+            let rating = $(this).data('rating')
+            $(this).css('width', rating + '%')
+        })
+    }
+</script>

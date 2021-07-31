@@ -46,6 +46,16 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(RatingReview::class, 'product_id')->where('status', 1);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews->avg('rating') ?? 0;
+    }
+
     public function getProductImagesArrayAttribute()
     {
         if ($this->product_images) {

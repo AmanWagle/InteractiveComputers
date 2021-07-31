@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper">
+    <div id="app" class="page-wrapper">
 
         @include('website.partials.navbar')
 
@@ -40,8 +40,12 @@
 
         </main>
 
-
         @include('website.partials.footer')
+
+        @guest
+            @include('website.auth.auth-modal')
+        @endguest
+
     </div>
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
@@ -49,13 +53,8 @@
 
     @include('website.partials.mobile-menu')
 
-    @guest
-        @include('website.auth.auth-modal')
-    @endguest
 
     <script src="{{ asset('website/js/app.js') }}"></script>
 </body>
-
-
 
 </html>

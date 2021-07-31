@@ -20,7 +20,7 @@ class ProductHelper
             $products = $products->limit($limit);
         }
 
-        $products = $products->get();
+        $products = $products->with('reviews')->get();
 
         if ($random) {
             $products = $products->shuffle();
@@ -36,7 +36,7 @@ class ProductHelper
             $products = $products->limit($limit);
         }
 
-        $products = $products->where('category_id', $category_id)->get();
+        $products = $products->with('reviews')->where('category_id', $category_id)->get();
 
         if ($random) {
             $products = $products->shuffle();

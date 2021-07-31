@@ -47,10 +47,10 @@
 
                                 <div class="ratings-container">
                                     <div class="ratings">
-                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                    </div><!-- End .ratings -->
-                                    <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
-                                </div><!-- End .rating-container -->
+                                        <div class="ratings-val" style="width: {{ ($product->average_rating / 5) * 100 }}%"></div>
+                                    </div>
+                                    <span class="ratings-text">( {{ count($product->reviews) }} Reviews )</span>
+                                </div>
 
                                 <div class="product-price">
                                     Rs.
