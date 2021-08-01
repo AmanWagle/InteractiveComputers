@@ -8,6 +8,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { adminNotifications, globalFunctions } from './mixins'
 
 import VeeValidate from "vee-validate";
+import LiquorTree from 'liquor-tree';
+
+Vue.use(LiquorTree);
 Vue.use(VeeValidate);
 
 Vue.mixin(adminNotifications)

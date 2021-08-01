@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $appends = ['product_images_array', 'images_url'];
+    protected $appends = ['product_images_array', 'images_url', 'average_rating'];
 
     protected $fillable = [
         'name',

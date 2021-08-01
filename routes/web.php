@@ -10,13 +10,12 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductDetailController;
 use App\Http\Controllers\Website\RatingReviewController;
+use App\Http\Controllers\Website\Api\ShopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +75,12 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/product/{product:slug}/', [ProductDetailController::class, 'index'])->name('product.detail');
+
+//Shop APIs
+Route::view('/shop', 'website/pages/shop');
+Route::get('/shop/get-categories', [ShopController::class, 'getCategories'])->name('shop.categories');
+
+Route::get('/shop/get-products', [ShopController::class, 'getProducts']);
 
 Route::get('/product/{product_id}/user-review', [RatingReviewController::class, 'checkIfReviewExists'])->middleware('auth:web');
 Route::resource('/product/{product_id}/review', RatingReviewController::class)->middleware('auth:web');
