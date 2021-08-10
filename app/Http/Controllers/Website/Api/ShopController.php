@@ -25,6 +25,5 @@ class ShopController extends Controller
     {
         $response = $this->product_helper->getProducts($request);
         return $response;
-        //return response()->json(['data' => $products]);
     }
 }

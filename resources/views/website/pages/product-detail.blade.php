@@ -47,7 +47,8 @@
 
                                 <div class="ratings-container">
                                     <div class="ratings">
-                                        <div class="ratings-val" style="width: {{ ($product->average_rating / 5) * 100 }}%"></div>
+                                        <div class="ratings-val"
+                                            style="width: {{ ($product->average_rating / 5) * 100 }}%"></div>
                                     </div>
                                     <span class="ratings-text">( {{ count($product->reviews) }} Reviews )</span>
                                 </div>
@@ -78,13 +79,15 @@
                                 <h5 style="font-size: 16px;">Quantity</h5>
                                 <div class="details-filter-row details-row-size">
                                     <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="10"
-                                            step="1" data-decimals="0" required>
+                                        <input type="hidden" value="{{ $product->id }}" class="product_id">
+                                        <input type="number" id="qty" class="form-control product_quantity" value="1"
+                                            min="1" max="10" step="1" data-decimals="0" required>
                                     </div><!-- End .product-details-quantity -->
                                 </div><!-- End .details-filter-row -->
 
                                 <div class="product-details-action">
-                                    <a href="#" class="btn btn-product btn-cart"><span>add to cart</span></a>
+                                    <a href="#" class="btn btn-product btn-cart add-to-cart-btn"><span>add to
+                                            cart</span></a>
                                 </div><!-- End .product-details-action -->
                                 <hr>
                                 <div class="product-content">
@@ -95,7 +98,8 @@
                                 <div class="product-details-footer">
                                     <div class="product-cat">
                                         <span class="font-weight-bold" style="color: #666;">Category:</span>
-                                        <a href="#">{{ $product->category->name }}</a>
+                                        <a
+                                            href="/shop?category={{ $product->category->slug }}">{{ $product->category->name }}</a>
                                     </div><!-- End .product-cat -->
 
                                     <div class="social-icons social-icons-sm">
@@ -123,3 +127,36 @@
     </div>
 
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('.add-to-cart-btn').click(function(e) {
+                e.preventDefault();
+
+                var product_id = $(this).closest('.product-details').find('.product_id').val();
+                var product_quantity = $(this).closest('.product-details').find('.product_quantity').val();
+
+                $.ajax({
+                    method: "POST",
+                    url: "/product/add-to-cart",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'product_id': product_id,
+                        'product_quantity': product_quantity
+                    },
+                    dataType: 'JSON',
+                    success: function(response) {
+                        $(document).trigger('cart-updated')
+                        Vue.swal({
+                            icon: 'success',
+                            title: 'Added to cart.',
+                            text: response.message,
+                            footer: '<a href="">Go to Cart <i class="icon-shopping-cart"></i>'
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+@endpush

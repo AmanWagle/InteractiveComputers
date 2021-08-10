@@ -64,7 +64,7 @@ class ProductHelper
             $this->applyPriceFilter($request->price_range, $products);
         }
 
-        $products = $products->get();
+        $products = $products->paginate(20);
 
         //check if we need to get side bar or not
         if ($request->fetch_side_bar === "true") {

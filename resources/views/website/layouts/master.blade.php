@@ -53,8 +53,9 @@
 
     @include('website.partials.mobile-menu')
 
-
     <script src="{{ asset('website/js/app.js') }}"></script>
+
+    @stack('script')
 </body>
 
 </html>

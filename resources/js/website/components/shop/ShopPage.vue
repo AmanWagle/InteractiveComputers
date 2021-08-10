@@ -224,9 +224,9 @@
               <div class="row justify-content-center">
                 <!-- For each product -->
                 <div
-                  v-for="product in products"
+                  v-for="product in products.data"
                   :key="product.id"
-                  class="col-6 col-md-4 col-lg-4"
+                  class="col-6 col-md-4 col-lg-4 col-xl-3"
                 >
                   <div class="product product-7 text-center">
                     <figure class="product-media">
@@ -268,7 +268,9 @@
                         <a href="#">{{ product.category.name }}</a>
                       </div>
                       <h3 class="product-title">
-                        <a>{{ product.name }}</a>
+                        <a :href="`/product/${product.slug}`">{{
+                          product.name
+                        }}</a>
                       </h3>
 
                       <div class="product-price">
@@ -373,7 +375,7 @@ export default {
       category_loading: true,
       fetch_side_bar: true,
       url_params: {},
-      products: [],
+      products: {},
       brands: [],
       min_price: "",
       max_price: "",
@@ -409,10 +411,10 @@ export default {
       this.fetchProducts();
     },
 
-    async fetchProducts() {
+    async fetchProducts(page = 1) {
       try {
         this.url_params.fetch_side_bar = this.fetch_side_bar;
-        let response = await axios.get(`/shop/get-products`, {
+        let response = await axios.get(`/shop/get-products?page=` + page, {
           params: this.url_params,
         });
         this.products = response.data.products;

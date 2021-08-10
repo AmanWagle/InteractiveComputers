@@ -1,7 +1,7 @@
 @inject('product_helper', 'App\Helpers\ProductHelper')
 
 @php
-$products = $product_helper->getLatestProducts(true);
+$products = $product_helper->getLatestProducts(true, 15);
 @endphp
 
 <div class="bg-light pt-3 pb-5">

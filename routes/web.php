@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Website\Api\CartController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductDetailController;
 use App\Http\Controllers\Website\RatingReviewController;
@@ -72,15 +73,33 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 //Website Routes
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('website.home');
 
-Route::get('/product/{product:slug}/', [ProductDetailController::class, 'index'])->name('product.detail');
+Route::prefix('product')->group(function () {
 
-//Shop APIs
-Route::view('/shop', 'website/pages/shop');
-Route::get('/shop/get-categories', [ShopController::class, 'getCategories'])->name('shop.categories');
+    Route::get('{product:slug}/', [ProductDetailController::class, 'index'])->name('product.detail');
 
-Route::get('/shop/get-products', [ShopController::class, 'getProducts']);
+    Route::get('{product_id}/user-review', [RatingReviewController::class, 'checkIfReviewExists'])->middleware('auth:web');
 
-Route::get('/product/{product_id}/user-review', [RatingReviewController::class, 'checkIfReviewExists'])->middleware('auth:web');
-Route::resource('/product/{product_id}/review', RatingReviewController::class)->middleware('auth:web');
+    Route::resource('{product_id}/review', RatingReviewController::class)->middleware('auth:web');
+
+    Route::post('/add-to-cart', [CartController::class, 'addToCart']);
+
+});
+
+Route::prefix('shop')->group(function () {
+
+    Route::view('/', 'website/pages/shop');
+
+    Route::get('get-categories', [ShopController::class, 'getCategories'])->name('shop.categories');
+
+    Route::get('get-products', [ShopController::class, 'getProducts']);
+
+    Route::view('cart', 'website/pages/cart');
+
+    Route::get('cart-items', [CartController::class, 'getCartItems']);
+
+    Route::delete('cart-item/{id}', [CartController::class, 'removeFromCart']);
+
+    Route::view('checkout', 'website/pages/checkout');
+});
