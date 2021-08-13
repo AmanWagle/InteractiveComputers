@@ -25,370 +25,323 @@
     <div class="page-content">
       <div class="checkout">
         <div class="container">
-          <div class="checkout-discount">
-            <form action="#">
-              <input
-                type="text"
-                class="form-control"
-                required
-                id="checkout-discount-input"
-              />
-              <label for="checkout-discount-input" class="text-truncate"
-                >Have a coupon?
-                <span>Click here to enter your code</span></label
-              >
-            </form>
-          </div>
-          <!-- End .checkout-discount -->
-          <form action="#">
-            <div class="row">
-              <div class="col-lg-9">
+          <div class="row">
+            <div class="col-lg-9">
+              <div>
                 <h2 class="checkout-title">Billing Details</h2>
                 <!-- End .checkout-title -->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label>First Name *</label>
-                    <input type="text" class="form-control" required />
-                  </div>
-                  <!-- End .col-sm-6 -->
 
-                  <div class="col-sm-6">
-                    <label>Last Name *</label>
-                    <input type="text" class="form-control" required />
-                  </div>
-                  <!-- End .col-sm-6 -->
-                </div>
-                <!-- End .row -->
-
-                <label>Company Name (Optional)</label>
-                <input type="text" class="form-control" />
-
-                <label>Country *</label>
-                <input type="text" class="form-control" required />
-
-                <label>Street address *</label>
+                <label>Full Name *</label>
                 <input
+                  v-model="shipping_details.full_name"
                   type="text"
                   class="form-control"
-                  placeholder="House number and Street name"
-                  required
+                  name="full_name"
+                  placeholder="Full Name"
+                  v-validate="'required'"
                 />
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Appartments, suite, unit etc ..."
-                  required
-                />
+                <span
+                  class="text-danger text-sm"
+                  v-if="errors.has('full_name')"
+                  >{{ errors.first("full_name") }}</span
+                >
 
                 <div class="row">
                   <div class="col-sm-6">
-                    <label>Town / City *</label>
-                    <input type="text" class="form-control" required />
+                    <label>Phone Number *</label>
+                    <input
+                      v-model="shipping_details.phone_number"
+                      type="number"
+                      class="form-control"
+                      name="phone_number"
+                      placeholder="Phone Number"
+                      v-validate="'required'"
+                    />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('phone_number')"
+                      >{{ errors.first("phone_number") }}</span
+                    >
+                  </div>
+
+                  <div class="col-sm-6">
+                    <label>Secondary Phone Number</label>
+                    <input
+                      v-model="shipping_details.secondary_phone_number"
+                      type="number"
+                      class="form-control"
+                      placeholder="Secondary Phone Number"
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>Province *</label>
+                    <input
+                      v-model="shipping_details.province"
+                      type="text"
+                      name="province"
+                      class="form-control"
+                      placeholder="Province"
+                      v-validate="'required'"
+                    />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('province')"
+                      >{{ errors.first("province") }}</span
+                    >
+                  </div>
+
+                  <div class="col-sm-6">
+                    <label>District *</label>
+                    <input
+                      v-model="shipping_details.district"
+                      type="text"
+                      name="district"
+                      class="form-control"
+                      placeholder="District"
+                      v-validate="'required'"
+                    />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('district')"
+                      >{{ errors.first("district") }}</span
+                    >
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label>City *</label>
+                    <input
+                      v-model="shipping_details.city"
+                      type="text"
+                      class="form-control"
+                      name="city"
+                      placeholder="City"
+                      v-validate="'required'"
+                    />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('city')"
+                      >{{ errors.first("city") }}</span
+                    >
                   </div>
                   <!-- End .col-sm-6 -->
 
                   <div class="col-sm-6">
-                    <label>State / County *</label>
-                    <input type="text" class="form-control" required />
+                    <label>Landmark *</label>
+                    <input
+                      v-model="shipping_details.landmark"
+                      type="text"
+                      name="landmark"
+                      class="form-control"
+                      v-validate="'required'"
+                      placeholder="Landmark"
+                    />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('landmark')"
+                      >{{ errors.first("landmark") }}</span
+                    >
                   </div>
                   <!-- End .col-sm-6 -->
                 </div>
                 <!-- End .row -->
 
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label>Postcode / ZIP *</label>
-                    <input type="text" class="form-control" required />
-                  </div>
-                  <!-- End .col-sm-6 -->
-
-                  <div class="col-sm-6">
-                    <label>Phone *</label>
-                    <input type="tel" class="form-control" required />
-                  </div>
-                  <!-- End .col-sm-6 -->
-                </div>
-                <!-- End .row -->
-
-                <label>Email address *</label>
-                <input type="email" class="form-control" required />
-
-                <div class="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="checkout-create-acc"
-                  />
-                  <label class="custom-control-label" for="checkout-create-acc"
-                    >Create an account?</label
-                  >
-                </div>
-                <!-- End .custom-checkbox -->
-
-                <div class="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="checkout-diff-address"
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="checkout-diff-address"
-                    >Ship to a different address?</label
-                  >
-                </div>
-                <!-- End .custom-checkbox -->
-
-                <label>Order notes (optional)</label>
+                <label>Order Notes</label>
                 <textarea
+                  v-model="shipping_details.order_note"
                   class="form-control"
-                  cols="30"
-                  rows="4"
+                  rows="2"
                   placeholder="Notes about your order, e.g. special notes for delivery"
                 ></textarea>
               </div>
-              <!-- End .col-lg-9 -->
-              <aside class="col-lg-3">
-                <div class="summary">
-                  <h3 class="summary-title">Your Order</h3>
-                  <!-- End .summary-title -->
 
-                  <table class="table table-summary">
-                    <thead>
-                      <tr>
-                        <th>Product</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
+              <!-- Cart item detail list -->
+              <table class="table table-cart table-mobile mt-4">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
 
-                    <tbody>
-                      <tr>
-                        <td>
-                          <a href="#">Beige knitted elastic runner shoes</a>
-                        </td>
-                        <td>$84.00</td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <a href="#">Blue utility pinafore denimdress</a>
-                        </td>
-                        <td>$76,00</td>
-                      </tr>
-                      <tr class="summary-subtotal">
-                        <td>Subtotal:</td>
-                        <td>$160.00</td>
-                      </tr>
-                      <!-- End .summary-subtotal -->
-                      <tr>
-                        <td>Shipping:</td>
-                        <td>Free shipping</td>
-                      </tr>
-                      <tr class="summary-total">
-                        <td>Total:</td>
-                        <td>$160.00</td>
-                      </tr>
-                      <!-- End .summary-total -->
-                    </tbody>
-                  </table>
-                  <!-- End .table table-summary -->
-
-                  <div class="accordion-summary" id="accordion-payment">
-                    <div class="card">
-                      <div class="card-header" id="heading-1">
-                        <h2 class="card-title">
-                          <a
-                            role="button"
-                            data-toggle="collapse"
-                            href="#collapse-1"
-                            aria-expanded="true"
-                            aria-controls="collapse-1"
-                          >
-                            Direct bank transfer
-                          </a>
-                        </h2>
-                      </div>
-                      <!-- End .card-header -->
-                      <div
-                        id="collapse-1"
-                        class="collapse show"
-                        aria-labelledby="heading-1"
-                        data-parent="#accordion-payment"
-                      >
-                        <div class="card-body">
-                          Make your payment directly into our bank account.
-                          Please use your Order ID as the payment reference.
-                          Your order will not be shipped until the funds have
-                          cleared in our account.
-                        </div>
-                        <!-- End .card-body -->
-                      </div>
-                      <!-- End .collapse -->
-                    </div>
-                    <!-- End .card -->
-
-                    <div class="card">
-                      <div class="card-header" id="heading-2">
-                        <h2 class="card-title">
-                          <a
-                            class="collapsed"
-                            role="button"
-                            data-toggle="collapse"
-                            href="#collapse-2"
-                            aria-expanded="false"
-                            aria-controls="collapse-2"
-                          >
-                            Check payments
-                          </a>
-                        </h2>
-                      </div>
-                      <!-- End .card-header -->
-                      <div
-                        id="collapse-2"
-                        class="collapse"
-                        aria-labelledby="heading-2"
-                        data-parent="#accordion-payment"
-                      >
-                        <div class="card-body">
-                          Ipsum dolor sit amet, consectetuer adipiscing elit.
-                          Donec odio. Quisque volutpat mattis eros. Nullam
-                          malesuada erat ut turpis.
-                        </div>
-                        <!-- End .card-body -->
-                      </div>
-                      <!-- End .collapse -->
-                    </div>
-                    <!-- End .card -->
-
-                    <div class="card">
-                      <div class="card-header" id="heading-3">
-                        <h2 class="card-title">
-                          <a
-                            class="collapsed"
-                            role="button"
-                            data-toggle="collapse"
-                            href="#collapse-3"
-                            aria-expanded="false"
-                            aria-controls="collapse-3"
-                          >
-                            Cash on delivery
-                          </a>
-                        </h2>
-                      </div>
-                      <!-- End .card-header -->
-                      <div
-                        id="collapse-3"
-                        class="collapse"
-                        aria-labelledby="heading-3"
-                        data-parent="#accordion-payment"
-                      >
-                        <div class="card-body">
-                          Quisque volutpat mattis eros. Lorem ipsum dolor sit
-                          amet, consectetuer adipiscing elit. Donec odio.
-                          Quisque volutpat mattis eros.
-                        </div>
-                        <!-- End .card-body -->
-                      </div>
-                      <!-- End .collapse -->
-                    </div>
-                    <!-- End .card -->
-
-                    <div class="card">
-                      <div class="card-header" id="heading-4">
-                        <h2 class="card-title">
-                          <a
-                            class="collapsed"
-                            role="button"
-                            data-toggle="collapse"
-                            href="#collapse-4"
-                            aria-expanded="false"
-                            aria-controls="collapse-4"
-                          >
-                            PayPal
-                            <small class="float-right paypal-link"
-                              >What is PayPal?</small
-                            >
-                          </a>
-                        </h2>
-                      </div>
-                      <!-- End .card-header -->
-                      <div
-                        id="collapse-4"
-                        class="collapse"
-                        aria-labelledby="heading-4"
-                        data-parent="#accordion-payment"
-                      >
-                        <div class="card-body">
-                          Nullam malesuada erat ut turpis. Suspendisse urna
-                          nibh, viverra non, semper suscipit, posuere a, pede.
-                          Donec nec justo eget felis facilisis fermentum.
-                        </div>
-                        <!-- End .card-body -->
-                      </div>
-                      <!-- End .collapse -->
-                    </div>
-                    <!-- End .card -->
-
-                    <div class="card">
-                      <div class="card-header" id="heading-5">
-                        <h2 class="card-title">
-                          <a
-                            class="collapsed"
-                            role="button"
-                            data-toggle="collapse"
-                            href="#collapse-5"
-                            aria-expanded="false"
-                            aria-controls="collapse-5"
-                          >
-                            Credit Card (Stripe)
+                <tbody>
+                  <tr v-for="item in cart.cart_items" :key="item.id">
+                    <td class="product-col">
+                      <div class="product">
+                        <figure class="product-media">
+                          <a href="#">
                             <img
-                              src="assets/images/payments-summary.png"
-                              alt="payments cards"
+                              :src="item.product.images_url[0]"
+                              alt="Product image"
                             />
                           </a>
-                        </h2>
-                      </div>
-                      <!-- End .card-header -->
-                      <div
-                        id="collapse-5"
-                        class="collapse"
-                        aria-labelledby="heading-5"
-                        data-parent="#accordion-payment"
-                      >
-                        <div class="card-body">
-                          Donec nec justo eget felis facilisis fermentum.Lorem
-                          ipsum dolor sit amet, consectetuer adipiscing elit.
-                          Donec odio. Quisque volutpat mattis eros. Lorem ipsum
-                          dolor sit ame.
-                        </div>
-                        <!-- End .card-body -->
-                      </div>
-                      <!-- End .collapse -->
-                    </div>
-                    <!-- End .card -->
-                  </div>
-                  <!-- End .accordion -->
+                        </figure>
 
-                  <button
-                    type="submit"
-                    class="btn btn-outline-primary-2 btn-order btn-block"
-                  >
-                    <span class="btn-text">Place Order</span>
-                    <span class="btn-hover-text">Proceed to Checkout</span>
-                  </button>
-                </div>
-                <!-- End .summary -->
-              </aside>
-              <!-- End .col-lg-3 -->
+                        <h3 class="product-title">
+                          <a href="#">{{ item.product.name }}</a>
+                        </h3>
+                      </div>
+                    </td>
+                    <td v-if="item.product.discount" class="price-col">
+                      {{ `Rs. ` + item.product.selling_price }}
+                    </td>
+                    <td v-else class="price-col">
+                      {{ `Rs. ` + item.product.original_price }}
+                    </td>
+                    <td class="quantity-col">{{ item.quantity }}</td>
+                    <td class="total-col">{{ `Rs. ` + item.total }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <!-- End .row -->
-          </form>
+            <!-- Order Side Bar -->
+            <aside class="col-lg-3">
+              <div class="summary">
+                <h3 class="summary-title">Your Order</h3>
+
+                <table class="table table-summary">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="item in cart.cart_items" :key="item.id">
+                      <td>
+                        <a href="#">{{ item.product.name }}</a>
+                      </td>
+                      <td>{{ `Rs. ` + item.total }}</td>
+                    </tr>
+
+                    <tr class="summary-subtotal">
+                      <td>Subtotal:</td>
+                      <td>{{ `Rs. ` + cart.total }}</td>
+                    </tr>
+                    <tr>
+                      <td>Shipping:</td>
+                      <td>Free shipping</td>
+                    </tr>
+                    <tr class="summary-total">
+                      <td>Total:</td>
+                      <td>{{ `Rs. ` + cart.total }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="accordion-summary mt-2" id="accordion-payment">
+                  <div class="form-check">
+                    <input
+                      v-model="shipping_details.payment_method"
+                      class="form-check-input"
+                      type="radio"
+                      name="payment_method"
+                      value="cash_on_delivery"
+                      id="cash_on_delivery"
+                    />
+                    <label class="form-check-label" for="cash_on_delivery">
+                      <img
+                        class="d-flex m-auto"
+                        width="50%"
+                        src="/storage/images/static/cod.png"
+                        alt="Cash On Delivery"
+                      />
+                    </label>
+                  </div>
+                  <br />
+                  <div class="form-check">
+                    <input
+                      v-model="shipping_details.payment_method"
+                      class="form-check-input"
+                      type="radio"
+                      name="payment_method"
+                      value="esewa"
+                      id="esewa"
+                      disabled
+                    />
+                    <label class="form-check-label" for="esewa">
+                      <img
+                        class="d-flex m-auto"
+                        width="50%"
+                        src="/storage/images/static/eSewa.png"
+                        alt="eSewa"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-outline-primary-2 btn-order btn-block"
+                  @click="placeOrder"
+                >
+                  <span class="btn-text">Place Order</span>
+                  <span class="btn-hover-text">Proceed to Checkout</span>
+                </button>
+              </div>
+            </aside>
+          </div>
         </div>
-        <!-- End .container -->
       </div>
-      <!-- End .checkout -->
     </div>
-    <!-- End .page-content -->
   </main>
-  <!-- End .main -->
 </template>
+
+<script>
+import { renderServerErrors } from "../../utils";
+export default {
+  data() {
+    return {
+      shipping_details: {
+        full_name: "",
+        phone_number: "",
+        secondary_phone_number: "",
+        province: "",
+        district: "",
+        city: "",
+        landmark: "",
+        order_note: "",
+        payment_method: "cash_on_delivery",
+      },
+      cart: {},
+    };
+  },
+
+  mounted() {
+    this.getActiveCartItems();
+  },
+
+  methods: {
+    async getActiveCartItems() {
+      try {
+        let response = await axios.get(`/shop/cart-items`);
+        this.cart = response.data;
+      } catch (e) {}
+    },
+
+    async placeOrder() {
+      let result = await this.$validator.validateAll();
+      if (!result) {
+        return;
+      }
+      try {
+        let payload = this.shipping_details;
+        let url = `/checkout`;
+        let response = await axios.post(url, payload);
+        if (response.data.success) {
+          location.href = `/`;
+        }
+      } catch (error) {
+        renderServerErrors(this.errors, error);
+      }
+    },
+  },
+};
+</script>

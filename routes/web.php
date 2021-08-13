@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Website\Api\CartController;
+use App\Http\Controllers\Website\Api\OrderController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductDetailController;
 use App\Http\Controllers\Website\RatingReviewController;
@@ -84,7 +85,6 @@ Route::prefix('product')->group(function () {
     Route::resource('{product_id}/review', RatingReviewController::class)->middleware('auth:web');
 
     Route::post('/add-to-cart', [CartController::class, 'addToCart']);
-
 });
 
 Route::prefix('shop')->group(function () {
@@ -101,5 +101,11 @@ Route::prefix('shop')->group(function () {
 
     Route::delete('cart-item/{id}', [CartController::class, 'removeFromCart']);
 
-    Route::view('checkout', 'website/pages/checkout');
+    Route::view('checkout', 'website/pages/checkout')->middleware('auth:web');
+});
+
+Route::prefix('checkout')->group(function () {
+
+    Route::post('/', [OrderController::class, 'store'])->middleware('auth:web')->name('checkout.store');
+
 });

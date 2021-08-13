@@ -157,3 +157,13 @@
         </div><!-- End .container -->
     </div><!-- End .footer-bottom -->
 </footer>
+
+@push('script')
+    @if (session('trigger_login'))
+        <script>
+            $(document).ready(function() {
+                $('#signin-modal').modal('show')
+            });
+        </script>
+    @endif
+@endpush

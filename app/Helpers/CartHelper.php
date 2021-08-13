@@ -21,7 +21,8 @@ class CartHelper
             $user_id = Auth::user()->id;
 
             $cart = Cart::firstOrCreate([
-                'user_id' => $user_id
+                'user_id' => $user_id,
+                'status' => 1
             ], [
                 'status' =>  1,
                 'total' => 0
@@ -30,7 +31,8 @@ class CartHelper
             $ip_address = $request->ip();
 
             $cart = Cart::firstOrCreate([
-                'ip_address' => $ip_address
+                'ip_address' => $ip_address,
+                'status' => 1
             ], [
                 'status' =>  1,
                 'total' => 0
@@ -57,21 +59,7 @@ class CartHelper
 
         $cart_item = CartItem::where('cart_id', $cart_id)->where('product_id', $product_id)->first();
 
-        // $cart_item = CartItem::firstOrCreate([
-        //     'cart_id' => $cart_id,
-        //     'product_id' => $product_id
-        // ], [
-        //     'quantity' => $product_quantity,
-        //     'total' => ($product->discount)
-        //         ? $product_quantity * $product->selling_price
-        //         : $product_quantity * $product->original_price
-        // ]);
-
-        // return $cart_item;
-
-
         if (!$cart_item) {         //if product is not present in cart.
-
             if ($product->discount) {       //check if product is discounted
                 $total = $product_quantity * $product->selling_price;
             } else {
@@ -112,12 +100,11 @@ class CartHelper
     {
         if (Auth::check()) {
             $user_id = Auth::user()->id;
-            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('user_id', $user_id);
+            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('user_id', $user_id)->where('status', 1)->first();
         } else {
             $ip_address = request()->ip();
-            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('ip_address', $ip_address)->first();
+            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('ip_address', $ip_address)->where('status', 1)->first();
         }
-
         return $cart;
     }
 
