@@ -35,6 +35,9 @@ Vue.component('admin-profile', require('./components/profile/Profile.vue').defau
 
 Vue.component('admin-reviews', require('./components/review/Reviews.vue').default);
 
+Vue.component('admin-order', require('./components/order/Orders.vue').default);
+Vue.component('order-details', require('./components/order/OrderDetails.vue').default);
+
 const app = new Vue({
     el: '#app',
 })

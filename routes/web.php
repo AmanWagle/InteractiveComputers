@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\BannerController;
@@ -66,6 +67,14 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
     Route::get('review', [ReviewController::class, 'index'])->name('review.index');
     Route::put('review/{id}/toggle-status', [ReviewController::class, 'updateStatus'])->name('review.update-status');
     Route::get('review/get-all', [ReviewController::class, 'getAllReviews'])->name('review.get-all');
+
+    Route::get('order', [AdminOrderController::class, 'index'])->name('order.index');
+    Route::get('order/get-all', [AdminOrderController::class, 'getAllOrders'])->name('order.get-all');
+    Route::get('order/{id}/details', [AdminOrderController::class, 'orderDetails'])->name('order.details');
+    Route::get('order/{id}/data', [AdminOrderController::class, 'orderData'])->name('order.data');
+    Route::put('order/{id}/change-status', [AdminOrderController::class, 'updateStatus'])->name('order.update-status');
+    Route::put('order/{id}/toggle-payment', [AdminOrderController::class, 'togglePayment'])->name('order.toggle-payment');
+    
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

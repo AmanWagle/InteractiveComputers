@@ -60,6 +60,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ request()->segment(2) === 'order' ? 'active' : '' }} ">
+                    <a href="{{ route('admin.order.index') }}" class='sidebar-link'>
+                        <i class="fas fa-dice"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-title">Website Section</li>
                 <li class="sidebar-item {{ request()->segment(2) === 'page' ? 'active' : '' }} has-sub">
                     <a href="#" class='sidebar-link'>
