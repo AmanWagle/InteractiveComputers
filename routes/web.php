@@ -17,6 +17,7 @@ use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductDetailController;
 use App\Http\Controllers\Website\RatingReviewController;
 use App\Http\Controllers\Website\Api\ShopController;
+use App\Http\Controllers\Website\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -74,7 +75,6 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
     Route::get('order/{id}/data', [AdminOrderController::class, 'orderData'])->name('order.data');
     Route::put('order/{id}/change-status', [AdminOrderController::class, 'updateStatus'])->name('order.update-status');
     Route::put('order/{id}/toggle-payment', [AdminOrderController::class, 'togglePayment'])->name('order.toggle-payment');
-    
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -94,6 +94,16 @@ Route::prefix('product')->group(function () {
     Route::resource('{product_id}/review', RatingReviewController::class)->middleware('auth:web');
 
     Route::post('/add-to-cart', [CartController::class, 'addToCart']);
+});
+
+Route::prefix('profile')->group(function () {
+    Route::get('/', [UserProfileController::class, 'index'])->middleware('auth:web')->name('user.profile');
+    Route::put('/', [UserProfileController::class, 'update'])->middleware('auth:web')->name('user.profile.update');
+    Route::get('/security', [UserProfileController::class, 'security'])->middleware('auth:web')->name('user.profile.security');
+    Route::put('/update-password', [UserProfileController::class, 'updatePassword'])->middleware('auth:web')->name('user.profile.update-password');
+
+    Route::get('/orders', [OrderController::class, 'getAllOrdersView'])->middleware('auth:web')->name('user.profile.all-orders');
+    Route::get('/orders/{id}', [OrderController::class, 'getOrderDetailView'])->middleware('auth:web')->name('user.profile.order');
 });
 
 Route::prefix('shop')->group(function () {
@@ -116,5 +126,4 @@ Route::prefix('shop')->group(function () {
 Route::prefix('checkout')->group(function () {
 
     Route::post('/', [OrderController::class, 'store'])->middleware('auth:web')->name('checkout.store');
-
 });

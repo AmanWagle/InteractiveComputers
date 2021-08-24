@@ -9,7 +9,7 @@ $brands = $brand_helper->getFeaturedBrands(true);
     <div class="owl-carousel brands-slider mb-5 owl-simple">
         @foreach ($brands as $brand)
             <a href="#" class="brand">
-                <img src="{{ $brand->logo_url }}" alt="Brand Name">
+                <img style="width: 70px !important;" src="{{ $brand->logo_url }}" alt="Brand Name">
             </a>
         @endforeach
     </div>

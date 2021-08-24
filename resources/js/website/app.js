@@ -20,6 +20,8 @@ Vue.component('shop-page', require('./components/shop/ShopPage.vue').default);
 Vue.component('shopping-cart', require('./components/order/Cart.vue').default);
 Vue.component('checkout-order', require('./components/order/Checkout.vue').default);
 Vue.component('cart-quickview', require('./components/order/CartQuickview.vue').default);
+Vue.component('update-profile', require('./components/profile/UpdateProfile.vue').default);
+Vue.component('update-password', require('./components/profile/UpdatePassword.vue').default);
 
 const app = new Vue({
     el: '#app',

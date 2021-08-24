@@ -1,73 +1,39 @@
+@inject('banner_helper', 'App\Helpers\BannerHelper')
+
+@php
+$banner_images = $banner_helper->getBannerImages('home-slider-banner');
+@endphp
 
 <div class="intro-slider-container">
     <div class="intro-slider owl-carousel owl-simple owl-nav-inside">
-        <div class="intro-slide"
-            style="background-image: url(https://www.bannerbatterien.com/upload/filecache/Banner-Batterien-Windrder2-web_06b2d8d686e91925353ddf153da5d939.webp);">
+
+        @foreach ($banner_images as $image)
+            <div class="intro-slide" style="background-image: url({{ $image->banner_image_url }});">
+                
+            </div>
+        @endforeach
+
+        {{-- <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-1.png);">
             <div class="container intro-content">
                 <div class="row">
                     <div class="col-auto offset-lg-3 intro-col">
-                        <h3 class="intro-subtitle">Trade-In Offer</h3><!-- End .h3 intro-subtitle -->
+                        <h3 class="intro-subtitle">Trade-In Offer</h3>
                         <h1 class="intro-title">MacBook Air <br>Latest Model
                             <span>
                                 <sup class="font-weight-light">from</sup>
                                 <span class="text-primary">$999<sup>,99</sup></span>
                             </span>
-                        </h1><!-- End .intro-title -->
+                        </h1>
 
                         <a href="category.html" class="btn btn-outline-primary-2">
                             <span>Shop Now</span>
                             <i class="icon-long-arrow-right"></i>
                         </a>
-                    </div><!-- End .col-auto offset-lg-3 -->
-                </div><!-- End .row -->
-            </div><!-- End .container intro-content -->
-        </div><!-- End .intro-slide -->
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+    </div>
 
-        <div class="intro-slide"
-            style="background-image: url(https://www.bannerbatterien.com/upload/filecache/Banner-Batterien-Windrder2-web_06b2d8d686e91925353ddf153da5d939.webp);">
-            <div class="container intro-content">
-                <div class="row">
-                    <div class="col-auto offset-lg-3 intro-col">
-                        <h3 class="intro-subtitle">Trevel & Outdoor</h3><!-- End .h3 intro-subtitle -->
-                        <h1 class="intro-title">Original Outdoor <br>Beanbag
-                            <span>
-                                <sup class="font-weight-light line-through">$89,99</sup>
-                                <span class="text-primary">$29<sup>,99</sup></span>
-                            </span>
-                        </h1><!-- End .intro-title -->
-
-                        <a href="category.html" class="btn btn-outline-primary-2">
-                            <span>Shop Now</span>
-                            <i class="icon-long-arrow-right"></i>
-                        </a>
-                    </div><!-- End .col-auto offset-lg-3 -->
-                </div><!-- End .row -->
-            </div><!-- End .container intro-content -->
-        </div><!-- End .intro-slide -->
-
-        <div class="intro-slide"
-            style="background-image: url(https://www.bannerbatterien.com/upload/filecache/Banner-Batterien-Windrder2-web_06b2d8d686e91925353ddf153da5d939.webp);">
-            <div class="container intro-content">
-                <div class="row">
-                    <div class="col-auto offset-lg-3 intro-col">
-                        <h3 class="intro-subtitle">Fashion Promotions</h3><!-- End .h3 intro-subtitle -->
-                        <h1 class="intro-title">Tan Suede <br>Biker Jacket
-                            <span>
-                                <sup class="font-weight-light line-through">$240,00</sup>
-                                <span class="text-primary">$180<sup>,99</sup></span>
-                            </span>
-                        </h1><!-- End .intro-title -->
-
-                        <a href="category.html" class="btn btn-outline-primary-2">
-                            <span>Shop Now</span>
-                            <i class="icon-long-arrow-right"></i>
-                        </a>
-                    </div><!-- End .col-auto offset-lg-3 -->
-                </div><!-- End .row -->
-            </div><!-- End .container intro-content -->
-        </div><!-- End .intro-slide -->
-    </div><!-- End .owl-carousel owl-simple -->
-
-    <span class="slider-loader"></span><!-- End .slider-loader -->
+    <span class="slider-loader"></span>
 </div>
-

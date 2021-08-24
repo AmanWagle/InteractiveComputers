@@ -69,4 +69,17 @@ class OrderHelper
 
         return response()->json(['success' => true, 'message' => 'Order Processed Successfully!']);
     }
+
+    public function getAllOrders(){
+        $user_id = Auth::user()->id;
+
+        $orders = Order::where('user_id', $user_id)->with('order_items')->get();
+
+        return $orders;
+    }
+
+    public function getOrderById($id){
+        $order = Order::with('order_items.product')->find($id);
+        return $order;
+    }
 }

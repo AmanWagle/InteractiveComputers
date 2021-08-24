@@ -11,6 +11,15 @@ class CategoryHelper
         $this->category = $category;
     }
 
+    // public function getAllCategories()
+    // {
+    //     $categories = $this->category;
+
+    //     $categories = $categories::select('id', 'name', 'icon', 'parent_id', 'slug')->get();
+
+    //     return $categories;
+    // }
+
 
     public function getFeaturedCategories($random = false, $limit = null)
     {

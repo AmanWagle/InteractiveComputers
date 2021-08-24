@@ -42,15 +42,6 @@ jQuery(document).ready(function ($) {
 		$('html, body').animate({ scrollTop: $('.section-support').offset().top }, 1200);
 	});
 
-	$('.intro-slider').owlCarousel({
-		"nav": false,
-		"responsive": {
-			"992": {
-				"nav": true
-			}
-		}
-	})
-
 	$('.products-slider').owlCarousel({
 		"nav": false,
 		"dots": true,
@@ -101,6 +92,16 @@ jQuery(document).ready(function ($) {
 				"items": 6,
 				"nav": true,
 				"dots": false
+			}
+		}
+	})
+
+	$('.intro-slider').owlCarousel({
+		"nav": false,
+		"items": 1,
+		"responsive": {
+			"992": {
+				"nav": true,
 			}
 		}
 	})

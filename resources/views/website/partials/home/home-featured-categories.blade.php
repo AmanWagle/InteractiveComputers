@@ -9,7 +9,7 @@ $featured_categories = $category_helper->getFeaturedCategories();
         <div class="row align-items-center">
             @foreach ($featured_categories as $category)
                 <div class="col-6 col-sm-4 col-lg-2">
-                    <a href="category.html" class="cat-block">
+                    <a href="/shop?category={{ $category->slug }}" class="cat-block">
                         <figure>
                             <span>
                                 <img src="{{ $category->icon_url }}" alt="Category image">

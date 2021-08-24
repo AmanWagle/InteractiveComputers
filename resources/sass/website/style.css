@@ -11551,9 +11551,9 @@ button:focus {
 }
 
 .quickView-content .owl-theme.owl-nav-inside .owl-dots {
-    left: 50%;
-    transform: translateX(-50%);
-    right: unset;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: unset !important;
 }
 
 .quickView-content>.row {
