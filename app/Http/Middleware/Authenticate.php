@@ -24,7 +24,6 @@ class Authenticate extends Middleware
             if (isset($this->guards[0]) && $this->guards[0] === 'admin') return route('admin.login');
             session()->flash('trigger_login', true);
             return url()->previous();
-            // return 'login';
         }
     }
 }

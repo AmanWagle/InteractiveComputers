@@ -6,6 +6,7 @@ $featured_categories = $category_helper->getFeaturedCategories();
 
 <div class="cta cta-horizontal cta-horizontal-box bg-primary">
     <div class="container">
+        <h2 class="title text-center mb-2">Explore Popular Categories</h2>
         <div class="row align-items-center">
             @foreach ($featured_categories as $category)
                 <div class="col-6 col-sm-4 col-lg-2">

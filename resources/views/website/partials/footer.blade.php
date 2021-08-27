@@ -158,6 +158,10 @@
     </div><!-- End .footer-bottom -->
 </footer>
 
+<form class="d-none" id="email-verification-form" method="POST" action="{{ route('verification.resend') }}">
+    @csrf
+</form>
+
 @push('script')
     @if (session('trigger_login'))
         <script>
@@ -166,4 +170,22 @@
             });
         </script>
     @endif
+    @if (session('trigger_verify_email'))
+        <script>
+            $(document).ready(function() {
+                Vue.swal({
+                    icon: 'error',
+                    title: 'Verify Email',
+                    text: 'Please verify email before proceeding.',
+                    footer: '<a href="#" id="resend_verification_link">Resend new verification link.</a>'
+                });
+            });
+        </script>
+    @endif
+    <script>
+        $(document).on('click', '#resend_verification_link', function() {
+            event.preventDefault();
+            document.getElementById('email-verification-form').submit();
+        });
+    </script>
 @endpush

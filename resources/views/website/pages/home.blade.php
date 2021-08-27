@@ -3,7 +3,7 @@
 @section('content')
     @include('website.partials.home.home-banner')
 
-    <div class="mb-2"></div>
+    <div class="mb-4"></div>
 
     @include('website.partials.home.home-offer-banner-first')
 

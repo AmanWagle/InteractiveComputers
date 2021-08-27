@@ -5,10 +5,10 @@ $banner_images = $banner_helper->getBannerImages('home-offer-banner-first');
 @endphp
 
 @if ($banner_images)
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
             @foreach ($banner_images as $banner_image)
-                <div class="{{ $loop->iteration % 2 !== 0 ? 'col-sm-6 col-lg-3' : 'col-lg-6' }}">
+                <div class="col-md-4">
                     <div class="banner banner-overlay">
                         <a href="#">
                             <img src="{{ $banner_image->banner_image_url }}" alt="Banner">

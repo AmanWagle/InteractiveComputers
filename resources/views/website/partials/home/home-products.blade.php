@@ -7,13 +7,21 @@ $featured_categories = $category_helper->getFeaturedCategories();
 
 @foreach ($featured_categories as $category)
     @php
-        $products = $product_helper->getProductsByCategory($category->id);
+        $products = $product_helper->getProductsByCategory($category->id, false, 15);
     @endphp
     <div class="bg-light pt-3 pb-5">
         <div class="container">
-            <div class="heading heading-flex mb-3">
+            <div class="heading heading-flex heading-border mb-3">
                 <div class="heading-left">
                     <h2 class="title">{{ $category->name }}</h2>
+                </div>
+
+                <div class="heading-right">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary btn-sm" href="/shop?category={{ $category->slug }}" style="min-width: 0px;">View All</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

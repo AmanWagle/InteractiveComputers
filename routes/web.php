@@ -81,7 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware("auth:admin")->group(function
 
 
 //Website Routes
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [HomeController::class, 'index'])->name('website.home');
 
@@ -97,7 +97,7 @@ Route::prefix('product')->group(function () {
 });
 
 Route::prefix('profile')->group(function () {
-    Route::get('/', [UserProfileController::class, 'index'])->middleware('auth:web')->name('user.profile');
+    Route::get('/', [UserProfileController::class, 'index'])->middleware(['auth:web', 'verified'])->name('user.profile');
     Route::put('/', [UserProfileController::class, 'update'])->middleware('auth:web')->name('user.profile.update');
     Route::get('/security', [UserProfileController::class, 'security'])->middleware('auth:web')->name('user.profile.security');
     Route::put('/update-password', [UserProfileController::class, 'updatePassword'])->middleware('auth:web')->name('user.profile.update-password');
