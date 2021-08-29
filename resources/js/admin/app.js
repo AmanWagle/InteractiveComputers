@@ -8,7 +8,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { adminNotifications, globalFunctions } from './mixins'
 
 import VeeValidate from "vee-validate";
-import LiquorTree from 'liquor-tree';
+import LiquorTree from 'liquor-tree'; 
+
+import 'advanced-laravel-vue-paginate/dist/advanced-laravel-vue-paginate.css'
+Vue.use(require('advanced-laravel-vue-paginate'));
+
 
 Vue.use(LiquorTree);
 Vue.use(VeeValidate);

@@ -41,7 +41,7 @@
                     <td class="product-col">
                       <div class="product">
                         <figure class="product-media">
-                          <a href="#">
+                          <a :href="`/product/` + item.product.slug">
                             <img
                               :src="item.product.images_url[0]"
                               alt="Product image"
@@ -50,7 +50,7 @@
                         </figure>
 
                         <h3 class="product-title">
-                          <a href="#">{{ item.product.name }}</a>
+                          <a :href="`/product/` + item.product.slug">{{ item.product.name }}</a>
                         </h3>
                       </div>
                     </td>

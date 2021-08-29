@@ -22,7 +22,7 @@
           <div class="product" v-for="item in cart.cart_items" :key="item.id">
             <div class="product-cart-details">
               <h4 class="product-title">
-                <a href="product.html">{{ item.product.name }}</a>
+                <a :href="`/product/` + item.product.slug">{{ item.product.name }}</a>
               </h4>
 
               <span class="cart-product-info">
@@ -38,7 +38,7 @@
             <!-- End .product-cart-details -->
 
             <figure class="product-image-container">
-              <a href="product.html" class="product-image">
+              <a :href="`/product/` + item.product.slug" class="product-image">
                 <img :src="item.product.images_url[0]" alt="product" />
               </a>
             </figure>

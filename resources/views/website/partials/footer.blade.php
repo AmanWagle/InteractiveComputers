@@ -62,8 +62,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <div class="widget widget-about">
-                        <img src="assets/images/demos/demo-13/logo-footer.png" class="footer-logo" alt="Footer Logo"
-                            width="105" height="25">
+                        <h5>Interactive Computers</h5>
                         <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate
                             magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
                             porttitor, facilisis luctus, metus. </p>
@@ -76,10 +75,7 @@
                                 </div><!-- End .col-sm-6 -->
                                 <div class="col-sm-6 col-md-8">
                                     <span class="widget-about-title">Payment Method</span>
-                                    <figure class="footer-payments">
-                                        <img src="assets/images/payments.png" alt="Payment methods" width="272"
-                                            height="20">
-                                    </figure><!-- End .footer-payments -->
+                                    <h5>eSewa</h5>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
                         </div><!-- End .widget-about-info -->
@@ -134,14 +130,15 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p>
-            <!-- End .footer-copyright -->
-            <ul class="footer-menu">
-                <li><a href="#">Terms Of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul><!-- End .footer-menu -->
+            <p class="footer-copyright">Copyright © 2021 Interactive Computers. ALL RIGHTS RESERVED.</p>
 
             <div class="social-icons social-icons-color">
+                <p>Crafted with &#10084;&#65039; by <a href="https://amanwagle.com.np" target="_blank">
+                    <b class="text-primary">AMAN WAGLE</b></a>
+                </p>
+            </div>
+
+            {{-- <div class="social-icons social-icons-color">
                 <span class="social-label">Social Media</span>
                 <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i
                         class="icon-facebook-f"></i></a>
@@ -153,9 +150,9 @@
                         class="icon-youtube"></i></a>
                 <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i
                         class="icon-pinterest"></i></a>
-            </div><!-- End .soial-icons -->
-        </div><!-- End .container -->
-    </div><!-- End .footer-bottom -->
+            </div> --}}
+        </div>
+    </div>
 </footer>
 
 <form class="d-none" id="email-verification-form" method="POST" action="{{ route('verification.resend') }}">

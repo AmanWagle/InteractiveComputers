@@ -5,8 +5,8 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
             <div class="container d-flex align-items-center">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Products</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
                 </ol>
             </div><!-- End .container -->
@@ -17,26 +17,22 @@
                 <div class="product-details-top">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="product-gallery product-gallery-vertical">
+                            <div class="product-gallery">
                                 <div class="row">
-                                    <figure class="product-main-image">
-                                        <img id="product-zoom" src="{{ $product->images_url[0] }}"
-                                            data-zoom-image="{{ $product->images_url[0] }}" alt="product image">
+                                    
+                                    <img id="product--main-image" src="{{ $product->images_url[0] }}"
+                                        data-zoom-image="{{ $product->images_url[0] }}" />
 
-                                        <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                            <i class="icon-arrows"></i>
-                                        </a>
-                                    </figure><!-- End .product-main-image -->
-
-                                    <div id="product-zoom-gallery" class="product-image-gallery">
+                                    <div id="product-image-gallery">
                                         @foreach ($product->images_url as $product_image)
-                                            <a class="product-gallery-item active" href="#"
-                                                data-image="{{ $product_image }}"
+                                            <a href="javascript:void(0)" data-image="{{ $product_image }}"
+                                                class="product--gallery-image {{ $loop->iteration === 1 ? 'active' : '' }}"
                                                 data-zoom-image="{{ $product_image }}">
-                                                <img src="{{ $product_image }}" alt="product side">
+                                                <img id="img_01" src="{{ $product_image }}" />
                                             </a>
                                         @endforeach
-                                    </div><!-- End .product-image-gallery -->
+                                    </div>
+
                                 </div><!-- End .row -->
                             </div><!-- End .product-gallery -->
                         </div><!-- End .col-md-6 -->
@@ -129,7 +125,14 @@
 @endsection
 
 @push('script')
+    <script src="{{ asset('website/js/elevatezoom.js') }}"></script>
     <script>
+        window.onload = function() {
+            $('.ratings-val').each(function() {
+                let rating = $(this).data('rating')
+                $(this).css('width', rating + '%')
+            })
+        }
         $(document).ready(function() {
             $('.add-to-cart-btn').click(function(e) {
                 e.preventDefault();
@@ -154,9 +157,64 @@
                             text: response.message,
                             footer: '<a href="">Go to Cart <i class="icon-shopping-cart"></i>'
                         });
+                        $('.product_quantity').val('1');
                     }
                 });
             });
+
+
+            if ($(window).width() > 550)
+            // scrollZoom: true,
+            {
+                let zoomConfig = {
+                    gallery: 'product-image-gallery',
+                    cursor: 'pointer',
+                    galleryActiveClass: 'active',
+                    imageCrossfade: true,
+                    loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif',
+                    zoomWindowHeight: '600',
+                    zoomWindowWidth: '600',
+                    easing: true,
+                    scrollZoom: true,
+                    responsive: true
+                }
+
+                $("#product--main-image").elevateZoom(zoomConfig);
+                $("#product--main-image").bind("click", function(e) {
+                    var ez = $('#product--main-image').data('elevateZoom');
+                    $.fancybox(ez.getGalleryList());
+                    return false;
+                });
+            } else {
+                $(document).on('click', '.product--gallery-image ', function() {
+                    let image = $(this).data('image');
+                    $('.product--gallery-image').removeClass('active')
+                    $(this).addClass('active')
+
+                    $('#product--main-image').attr('src', image)
+                })
+            }
         })
     </script>
 @endpush
+
+<style>
+    #product-image-gallery img {
+        border: 2px solid white !important;
+        width: 100px !important;
+        margin: 10px 5px 0px 0px;
+        display: inline-block !important;
+    }
+
+    #product-image-gallery a.active img {
+        border: 2px solid #333 !important;
+        padding: 2px !important
+    }
+
+    @media screen and (max-width: 550px) {
+        .zoomContainer {
+            display: none;
+        }
+    }
+
+</style>

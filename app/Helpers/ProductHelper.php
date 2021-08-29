@@ -50,7 +50,7 @@ class ProductHelper
 
     public function getProducts(Request $request)
     {
-        $products = $this->product->with('reviews', 'category:id,name');
+        $products = $this->product->with('reviews', 'category:id,name,slug');
 
         if ($request->has('category')) {
             $this->applyCategoryFilter($request->category, $products);
@@ -62,6 +62,10 @@ class ProductHelper
 
         if ($request->has('price_range')) {
             $this->applyPriceFilter($request->price_range, $products);
+        }
+
+        if ($request->has('filter')) {
+            $this->applyFilter($request->filter, $products);
         }
 
         $products = $products->paginate(20);
@@ -108,6 +112,26 @@ class ProductHelper
         $products = $products->whereBetween('original_price', $price_range);
 
         return $products;
+    }
+
+    public function applyFilter($filter, $products)
+    {
+        switch ($filter) {
+            case "a_to_z":
+                $products = $products->orderBy('name', 'asc');
+                break;
+            case "z_to_a":
+                $products = $products->orderBy('name', 'desc');
+                break;
+            case "low_to_high":
+                $products = $products->orderBy('original_price', 'asc');
+                break;
+            case "high_to_low":
+                $products = $products->orderBy('original_price', 'desc');
+                break;
+            case "none":
+                break;
+        }
     }
 
     public function getBrandSideBar($brand_ids)

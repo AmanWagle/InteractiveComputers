@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function getAllProducts()
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
         return response()->json(['data' => $products]);
     }
 
@@ -156,7 +156,7 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $image_name_string = $product->product_images;
-        
+
         if ($request->hasFile('product_image')) {
             //deleting existing image if new images are uploaded.
             foreach ($product->product_images_array as $image) {

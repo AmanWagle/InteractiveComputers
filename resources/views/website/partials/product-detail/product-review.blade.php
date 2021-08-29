@@ -90,13 +90,4 @@
         @endif
 
     </div>
-</div>
-
-<script>
-    window.onload = function() {
-        $('.ratings-val').each(function() {
-            let rating = $(this).data('rating')
-            $(this).css('width', rating + '%')
-        })
-    }
-</script>
+</div> 

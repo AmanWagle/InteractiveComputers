@@ -31,6 +31,12 @@ body {
     background-color: #c96;
 }
 
+.spec-table td {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    padding-left: 2rem !important;
+}
+
 p {
     margin-bottom: 1.5rem;
 }
@@ -7596,7 +7602,7 @@ p {
     position: relative;
     margin-bottom: 1rem;
     transition: box-shadow 0.35s ease;
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 .owl-carousel .product {
@@ -12238,8 +12244,8 @@ button:focus {
 
 .carousel-equal-height .owl-stage,
 .carousel-equal-height .owl-item {
-    display: flex;
-    align-items: stretch;
+    /* display: flex;
+    align-items: stretch; */
 }
 
 .carousel-equal-height .product {

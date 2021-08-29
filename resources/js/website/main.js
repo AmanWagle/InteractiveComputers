@@ -42,11 +42,36 @@ jQuery(document).ready(function ($) {
 		$('html, body').animate({ scrollTop: $('.section-support').offset().top }, 1200);
 	});
 
+	$('.products-slider-home').owlCarousel({
+		"nav": false,
+		"dots": false,
+		"margin": 20,
+		"loop": true,
+		"responsive": {
+			"0": {
+				"items": 2
+			},
+			"480": {
+				"items": 2
+			},
+			"768": {
+				"items": 3
+			},
+			"992": {
+				"items": 4
+			},
+			"1280": {
+				"items": 5,
+				"nav": true
+			}
+		}
+	});
+
 	$('.products-slider').owlCarousel({
 		"nav": false,
 		"dots": true,
 		"margin": 20,
-		"loop": false,
+		"loop": true,
 		"responsive": {
 			"0": {
 				"items": 2

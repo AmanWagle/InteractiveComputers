@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $appends = ['product_images_array', 'images_url', 'average_rating'];
+    protected $appends = ['product_images_array', 'images_url', 'average_rating', 'specifications_array'];
 
     protected $fillable = [
         'name',
@@ -60,6 +60,14 @@ class Product extends Model
     {
         if ($this->product_images) {
             return explode(', ', $this->product_images);
+        }
+        return [];
+    }
+
+    public function getSpecificationsArrayAttribute()
+    {
+        if($this->specifications) {
+            return json_decode($this->specifications, true);
         }
         return [];
     }

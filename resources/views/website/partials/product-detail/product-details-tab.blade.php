@@ -22,24 +22,22 @@
             <div class="reviews">
                 <h3>Product Specification</h3>
                 <div>
-                    <table class="table" border="2">
+                    <table class="table spec-table" border="2">
                         <tbody>
-                            <tr>
-                                <td>CPU</td>
-                                <td><span>4000-series AMD Ryzen 5 4500U Processor</span></td>
-                            </tr>
-                            <tr>
-                                <td>OS</td>
-                                <td>Windows 10 Home</td>
-                            </tr>
-                            <tr>
-                                <td>Display</td>
-                                <td><span>14-inch Full-HD (1920 x 1080 pixels), IPS-Level</span></td>
-                            </tr>
-                            <tr>
-                                <td>Graphics</td>
-                                <td><span>AMD Radeon Graphics</span></td>
-                            </tr>
+                            @if (!count($product->specifications_array))
+                                <div class="reviews d-flex justify-content-center">
+                                    <div class="row no-gutters ">
+                                        <b>Specification is not mentioned. Please check prodect description.</b>
+                                    </div>
+                                </div>
+                            @else
+                                @foreach ($product->specifications_array as $spec)
+                                    <tr>
+                                        <td>{{ $spec['variable'] }}</td>
+                                        <td><span>{{ $spec['value'] }}</span></td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

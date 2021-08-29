@@ -1,40 +1,19 @@
 <template>
   <div>
-    <div
-      class="page-header text-center"
-      style="background-image: url('assets/images/page-header-bg.jpg')"
-    >
-      <div class="container">
-        <h1 class="page-title">Grid 3 Columns<span>Shop</span></h1>
-      </div>
-      <!-- End .container -->
-    </div>
-    <!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
       <div class="container">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Shop</a></li>
-          <li class="breadcrumb-item active" aria-current="page">
-            Grid 3 Columns
-          </li>
         </ol>
       </div>
-      <!-- End .container -->
     </nav>
-    <!-- End .breadcrumb-nav -->
 
     <div class="page-content">
       <div class="container">
         <div class="row">
           <aside class="col-lg-3 order-lg-first">
             <div class="sidebar sidebar-shop">
-              <div class="widget widget-clean">
-                <label>Filters:</label>
-                <a href="#" class="sidebar-filter-clear">Clean All</a>
-              </div>
-              <!-- End .widget widget-clean -->
-
               <div class="widget widget-categories">
                 <h3 class="widget-title">Categories</h3>
                 <category-tree
@@ -155,7 +134,17 @@
             <div class="toolbox">
               <div class="toolbox-left">
                 <div class="toolbox-info">
-                  Showing <span>9 of 56</span> Products
+                  Showing
+                  <span>
+                    {{
+                      this.products.from +
+                      ` to ` +
+                      this.products.to +
+                      ` of ` +
+                      this.products.total
+                    }}
+                  </span>
+                  Results
                 </div>
               </div>
 
@@ -163,60 +152,22 @@
                 <div class="toolbox-sort">
                   <label for="sortby">Sort by:</label>
                   <div class="select-custom">
-                    <select name="sortby" id="sortby" class="form-control">
-                      <option value="popularity" selected="selected">
-                        Most Popular
-                      </option>
-                      <option value="rating">Most Rated</option>
-                      <option value="date">Date</option>
+                    <select
+                      v-model="sort_by"
+                      name="sortby"
+                      id="sortby"
+                      @change="sortByOnChange"
+                      class="form-control"
+                    >
+                      <option
+                        v-for="(option, key) in sort_options"
+                        :value="option.value"
+                        :label="option.label"
+                        :key="key"
+                      ></option>
                     </select>
                   </div>
                 </div>
-                <!-- End .toolbox-sort -->
-                <div class="toolbox-layout">
-                  <a href="category-list.html" class="btn-layout">
-                    <svg width="16" height="10">
-                      <rect x="0" y="0" width="4" height="4" />
-                      <rect x="6" y="0" width="10" height="4" />
-                      <rect x="0" y="6" width="4" height="4" />
-                      <rect x="6" y="6" width="10" height="4" />
-                    </svg>
-                  </a>
-
-                  <a href="category-2cols.html" class="btn-layout">
-                    <svg width="10" height="10">
-                      <rect x="0" y="0" width="4" height="4" />
-                      <rect x="6" y="0" width="4" height="4" />
-                      <rect x="0" y="6" width="4" height="4" />
-                      <rect x="6" y="6" width="4" height="4" />
-                    </svg>
-                  </a>
-
-                  <a href="category.html" class="btn-layout active">
-                    <svg width="16" height="10">
-                      <rect x="0" y="0" width="4" height="4" />
-                      <rect x="6" y="0" width="4" height="4" />
-                      <rect x="12" y="0" width="4" height="4" />
-                      <rect x="0" y="6" width="4" height="4" />
-                      <rect x="6" y="6" width="4" height="4" />
-                      <rect x="12" y="6" width="4" height="4" />
-                    </svg>
-                  </a>
-
-                  <a href="category-4cols.html" class="btn-layout">
-                    <svg width="22" height="10">
-                      <rect x="0" y="0" width="4" height="4" />
-                      <rect x="6" y="0" width="4" height="4" />
-                      <rect x="12" y="0" width="4" height="4" />
-                      <rect x="18" y="0" width="4" height="4" />
-                      <rect x="0" y="6" width="4" height="4" />
-                      <rect x="6" y="6" width="4" height="4" />
-                      <rect x="12" y="6" width="4" height="4" />
-                      <rect x="18" y="6" width="4" height="4" />
-                    </svg>
-                  </a>
-                </div>
-                <!-- End .toolbox-layout -->
               </div>
             </div>
 
@@ -229,13 +180,13 @@
                   class="col-6 col-md-4 col-lg-4 col-xl-3"
                 >
                   <div class="product product-7 text-center">
-                    <figure class="product-media">
+                    <figure class="product-media product--image-wrapper">
                       <span
                         v-if="product.discount"
                         class="product-label label-sale"
                         >Sale</span
                       >
-                      <a href="product.html">
+                      <a :href="`/product/${product.slug}`">
                         <img
                           :src="product.images_url[0]"
                           alt="Product image"
@@ -243,7 +194,7 @@
                         />
                       </a>
 
-                      <div class="product-action-vertical">
+                      <!-- <div class="product-action-vertical">
                         <a
                           href="popup/quickView.html"
                           class="btn-product-icon btn-quickview"
@@ -259,13 +210,15 @@
                           title="Add to cart"
                           ><span>add to cart</span></a
                         >
-                      </div>
+                      </div> -->
                     </figure>
                     <!-- End .product-media -->
 
                     <div class="product-body">
                       <div class="product-cat">
-                        <a href="#">{{ product.category.name }}</a>
+                        <a :href="`/shop?category=` + product.category.slug">{{
+                          product.category.name
+                        }}</a>
                       </div>
                       <h3 class="product-title">
                         <a :href="`/product/${product.slug}`">{{
@@ -306,42 +259,12 @@
                 </div>
               </div>
             </div>
-
-            <nav aria-label="Page navigation">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a
-                    class="page-link page-link-prev"
-                    href="#"
-                    aria-label="Previous"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    <span aria-hidden="true"
-                      ><i class="icon-long-arrow-left"></i></span
-                    >Prev
-                  </a>
-                </li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item-total">of 6</li>
-                <li class="page-item">
-                  <a
-                    class="page-link page-link-next"
-                    href="#"
-                    aria-label="Next"
-                  >
-                    Next
-                    <span aria-hidden="true"
-                      ><i class="icon-long-arrow-right"></i
-                    ></span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <!-- pagination -->
+            <advanced-laravel-vue-paginate
+              :data="products"
+              @paginateTo="fetchProducts"
+              useStyle="bootstrap"
+            />
           </div>
           <!-- End .col-lg-9 -->
         </div>
@@ -357,6 +280,8 @@
 import LiquorTree from "liquor-tree";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
+import AdvancedLaravelVuePaginate from "advanced-laravel-vue-paginate";
+import "advanced-laravel-vue-paginate/dist/advanced-laravel-vue-paginate.css";
 
 export default {
   data() {
@@ -379,12 +304,21 @@ export default {
       brands: [],
       min_price: "",
       max_price: "",
+      sort_by: "none",
+      sort_options: [
+        { label: "Sorting Items", value: "none" },
+        { label: "Price Low to High", value: "low_to_high" },
+        { label: "Price High to Low", value: "high_to_low" },
+        { label: "A to Z", value: "a_to_z" },
+        { label: "Z to A", value: "z_to_a" },
+      ],
     };
   },
 
   components: {
     "category-tree": LiquorTree,
     "vue-slider": VueSlider,
+    "advanced-laravel-vue-paginate": AdvancedLaravelVuePaginate,
   },
 
   mounted() {
@@ -393,6 +327,11 @@ export default {
   },
 
   methods: {
+    sortByOnChange(event) {
+      this.$set(this.url_params, "filter", event.target.value);
+      this.fetchProducts();
+    },
+
     async getProductCategories() {
       try {
         let response = await axios.get(`/shop/get-categories`);
@@ -436,7 +375,6 @@ export default {
 
     async onBrandChange(brand_slug) {
       this.$set(this.url_params, "brand", brand_slug);
-
       this.fetchProducts();
     },
 

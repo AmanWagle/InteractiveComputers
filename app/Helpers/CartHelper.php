@@ -55,7 +55,7 @@ class CartHelper
         $product_id = $request->product_id;
         $product_quantity = $request->product_quantity;
 
-        $product = Product::select('id', 'name', 'original_price', 'discount', 'selling_price')->where('id', $product_id)->first();
+        $product = Product::select('id', 'name', 'slug', 'original_price', 'discount', 'selling_price')->where('id', $product_id)->first();
 
         $cart_item = CartItem::where('cart_id', $cart_id)->where('product_id', $product_id)->first();
 
@@ -100,10 +100,10 @@ class CartHelper
     {
         if (Auth::check()) {
             $user_id = Auth::user()->id;
-            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('user_id', $user_id)->where('status', 1)->first();
+            $cart = Cart::with('cart_items.product:id,name,slug,original_price,discount,selling_price,product_images')->where('user_id', $user_id)->where('status', 1)->first();
         } else {
             $ip_address = request()->ip();
-            $cart = Cart::with('cart_items.product:id,name,original_price,discount,selling_price,product_images')->where('ip_address', $ip_address)->where('status', 1)->first();
+            $cart = Cart::with('cart_items.product:id,name,slug,original_price,discount,selling_price,product_images')->where('ip_address', $ip_address)->where('status', 1)->first();
         }
         return $cart;
     }

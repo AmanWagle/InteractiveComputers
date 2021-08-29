@@ -9,7 +9,7 @@ $featured_categories = $category_helper->getFeaturedCategories();
     @php
         $products = $product_helper->getProductsByCategory($category->id, false, 15);
     @endphp
-    <div class="bg-light pt-3 pb-5">
+    <div>
         <div class="container">
             <div class="heading heading-flex heading-border mb-3">
                 <div class="heading-left">
@@ -28,11 +28,11 @@ $featured_categories = $category_helper->getFeaturedCategories();
             <div class="tab-content tab-content-carousel">
                 <div class="tab-pane p-0 fade show active" id="hot-all-tab" role="tabpanel"
                     aria-labelledby="hot-all-link">
-                    <div class="products-slider owl-carousel owl-simple carousel-equal-height carousel-with-shadow">
+                    <div class="products-slider-home owl-carousel owl-simple carousel-equal-height carousel-with-shadow">
                         @each('website.partials.product-list-single', $products, 'product')
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
     <div class="mb-3"></div>
