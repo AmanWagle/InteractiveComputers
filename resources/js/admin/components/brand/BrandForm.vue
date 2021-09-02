@@ -28,7 +28,7 @@
                     >
                   </div>
                 </div>
-                
+
                 <div class="col-12">
                   <div class="form-group">
                     <label for="brand-description">Description</label>
@@ -98,6 +98,11 @@
                         class="form-control d-none"
                         v-on:change="onImageUpload"
                       />
+                      <span
+                        class="text-danger text-sm"
+                        v-if="errors.has('logo')"
+                        >{{ errors.first("logo") }}</span
+                      >
                     </div>
                   </div>
 
@@ -114,7 +119,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-4 col-12">
         <div class="card shadow">
           <div class="card-header">

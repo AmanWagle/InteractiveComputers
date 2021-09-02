@@ -2,12 +2,14 @@
 
 namespace App\Helpers;
 
+use App\Mail\OrderPlaced;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderHelper
 {
@@ -67,7 +69,15 @@ class OrderHelper
             'total' => $total
         ]);
 
+        $this->notifyAdmin('amanwagle10@gmail.com', $order->id);
+
         return response()->json(['success' => true, 'message' => 'Order Processed Successfully!']);
+    }
+
+    public function notifyAdmin($to, $order_id){
+        $order = $this->getOrderById($order_id);
+
+        Mail::to($to)->send(new OrderPlaced($order));
     }
 
     public function getAllOrders(){
@@ -79,7 +89,7 @@ class OrderHelper
     }
 
     public function getOrderById($id){
-        $order = Order::with('order_items.product')->find($id);
+        $order = Order::with('user', 'order_items.product')->find($id);
         return $order;
     }
 }

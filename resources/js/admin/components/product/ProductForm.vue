@@ -37,8 +37,13 @@
                   type="text"
                   class="form-control"
                   id="name"
+                  name="name"
                   placeholder="Product Name"
+                  v-validate="'required'"
                 />
+                <span class="text-danger text-sm" v-if="errors.has('name')">{{
+                  errors.first("name")
+                }}</span>
               </div>
 
               <div class="row">
@@ -48,9 +53,16 @@
                     v-model="product.product_code"
                     type="text"
                     class="form-control"
+                    name="productCode"
                     id="productCode"
                     placeholder="Product Code"
+                    v-validate="'required'"
                   />
+                  <span
+                    class="text-danger text-sm"
+                    v-if="errors.has('productCode')"
+                    >{{ errors.first("productCode") }}</span
+                  >
                 </div>
                 <div class="form-group col-md-6">
                   <label for="stock">Stock</label>
@@ -58,16 +70,27 @@
                     v-model="product.stock"
                     type="number"
                     class="form-control"
+                    name="stock"
                     id="stock"
                     placeholder="Stock"
+                    v-validate="'required'"
                   />
+                  <span
+                    class="text-danger text-sm"
+                    v-if="errors.has('stock')"
+                    >{{ errors.first("stock") }}</span
+                  >
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="categories">Product Categories</label>
-                  <select class="form-select" v-model="product.category_id">
+                  <select
+                    class="form-select"
+                    name="category"
+                    v-model="product.category_id"
+                  >
                     <option value="" disabled hidden>Select...</option>
                     <option
                       v-for="category in categories"
@@ -77,10 +100,19 @@
                       {{ category.category_full_name }}
                     </option>
                   </select>
+                  <span
+                    class="text-danger text-sm"
+                    v-if="errors.has('category')"
+                    >{{ errors.first("category") }}</span
+                  >
                 </div>
                 <div class="form-group col-md-6">
                   <label for="brand">Brand</label>
-                  <select class="form-select" v-model="product.brand_id">
+                  <select
+                    class="form-select"
+                    name="brand"
+                    v-model="product.brand_id"
+                  >
                     <option value="" disabled hidden>Select...</option>
                     <option
                       v-for="brand in brands"
@@ -90,6 +122,11 @@
                       {{ brand.name }}
                     </option>
                   </select>
+                  <span
+                    class="text-danger text-sm"
+                    v-if="errors.has('brand')"
+                    >{{ errors.first("brand") }}</span
+                  >
                 </div>
               </div>
 
@@ -105,8 +142,15 @@
                       type="number"
                       class="form-control"
                       id="inputOriginalPrice"
+                      name="original_price"
                       placeholder="Original Price"
+                      v-validate="'required'"
                     />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('original_price')"
+                      >{{ errors.first("original_price") }}</span
+                    >
                   </div>
                 </div>
 
@@ -182,7 +226,14 @@
                   class="form-control"
                   id="shortDesc"
                   placeholder="Short Description"
+                  name="short_description"
+                  v-validate="'required'"
                 />
+                <span
+                  class="text-danger text-sm"
+                  v-if="errors.has('short_description')"
+                  >{{ errors.first("short_description") }}</span
+                >
               </div>
 
               <div class="form-group">
@@ -193,7 +244,14 @@
                   id="desc"
                   placeholder="Description"
                   rows="6"
+                  name="description"
+                  v-validate="'required'"
                 />
+                <span
+                  class="text-danger text-sm"
+                  v-if="errors.has('description')"
+                  >{{ errors.first("description") }}</span
+                >
               </div>
             </div>
           </div>
@@ -248,8 +306,14 @@
                     class="d-none form-control"
                     multiple
                     accept="image/*"
+                    name="product_images"
                     v-on:change="onImageUpload"
                   />
+                  <span
+                    class="text-danger text-sm"
+                    v-if="errors.has('product_images')"
+                    >{{ errors.first("product_images") }}</span
+                  >
                 </div>
               </div>
 
@@ -446,6 +510,7 @@
 </template>
 
 <script>
+import { renderServerErrors } from "../../utils";
 export default {
   props: ["product_details"],
   data() {
@@ -540,6 +605,10 @@ export default {
     async filterSpecification() {},
 
     async saveProduct() {
+      let result = await this.$validator.validateAll();
+      if (!result) {
+        return;
+      }
       try {
         let payload = this.convertObjectToFormData(this.product);
 
@@ -571,8 +640,8 @@ export default {
           location.href = "/admin/product";
         }
       } catch (errors) {
-        // this.errors = errors.response.data.errors;
-        // this.notify("Check Validation Errors", "Error", "error");
+        renderServerErrors(this.errors, error);
+        this.notify("Check Validation Errors", "Error", "error");
       }
     },
   },

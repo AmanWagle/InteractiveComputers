@@ -68,7 +68,7 @@
         </div>
       </div>
     </form>
-    <div class="form-choice">
+    <!-- <div class="form-choice">
       <p class="text-center">or sign in with</p>
       <div class="row">
         <div class="col-sm-6">
@@ -84,7 +84,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

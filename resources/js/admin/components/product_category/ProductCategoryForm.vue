@@ -19,7 +19,13 @@
                       name="name"
                       placeholder="Category Name"
                       v-model="category.name"
+                      v-validate="'required'"
                     />
+                    <span
+                      class="text-danger text-sm"
+                      v-if="errors.has('name')"
+                      >{{ errors.first("name") }}</span
+                    >
                   </div>
                 </div>
                 <div class="col-12">
@@ -30,7 +36,9 @@
                       id="category-parent"
                       v-model="category.parent_id"
                     >
-                      <option value="" disabled hidden>Select Parent Category...</option>
+                      <option value="" disabled hidden>
+                        Select Parent Category...
+                      </option>
                       <option
                         v-for="category in parent_categories"
                         v-bind:key="category.id"
@@ -41,7 +49,8 @@
                     </select>
                     <p>
                       <small class="text-muted"
-                        >Only if you want this category to be child of other category.</small
+                        >Only if you want this category to be child of other
+                        category.</small
                       >
                     </p>
                   </div>
@@ -97,6 +106,11 @@
                         class="form-control d-none"
                         v-on:change="onImageUpload"
                       />
+                      <span
+                        class="text-danger text-sm"
+                        v-if="errors.has('icon')"
+                        >{{ errors.first("icon") }}</span
+                      >
                     </div>
                   </div>
 
@@ -165,7 +179,11 @@
       </div>
 
       <div class="col-12 mb-3">
-        <button type="button" class="btn btn-primary shadow" @click="saveCategory">
+        <button
+          type="button"
+          class="btn btn-primary shadow"
+          @click="saveCategory"
+        >
           Submit
         </button>
       </div>
@@ -174,6 +192,7 @@
 </template>
 
 <script>
+import { renderServerErrors } from "../../utils";
 export default {
   props: ["category_details"],
   data() {
@@ -191,7 +210,6 @@ export default {
         meta_description: "",
       },
       image_preview: "",
-      errors: {},
     };
   },
 
@@ -217,6 +235,10 @@ export default {
     },
 
     async saveCategory() {
+      let result = await this.$validator.validateAll();
+      if (!result) {
+        return;
+      }
       try {
         let payload = this.convertObjectToFormData(this.category);
         let url = `/admin/product-category`;
@@ -228,8 +250,8 @@ export default {
         if (response.data.success) {
           location.href = `/admin/product-category`;
         }
-      } catch (errors) {
-        this.errors = errors.response.data.errors;
+      } catch (error) {
+        renderServerErrors(this.errors, error);
       }
     },
   },

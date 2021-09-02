@@ -184,7 +184,9 @@
                         </figure>
 
                         <h3 class="product-title">
-                          <a :href="`/product/` + item.product.slug">{{ item.product.name }}</a>
+                          <a :href="`/product/` + item.product.slug">{{
+                            item.product.name
+                          }}</a>
                         </h3>
                       </div>
                     </td>
@@ -336,7 +338,13 @@ export default {
         let url = `/checkout`;
         let response = await axios.post(url, payload);
         if (response.data.success) {
-          location.href = `/`;
+          this.$swal({
+            icon: "success",
+            title: "Success",
+            text: "Order Placed Successfully. We will get back to you soon.",
+          }).then(async (result) => {
+            location.href = `/`;
+          });
         }
       } catch (error) {
         renderServerErrors(this.errors, error);

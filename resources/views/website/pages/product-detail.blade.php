@@ -19,7 +19,7 @@
                         <div class="col-md-6">
                             <div class="product-gallery">
                                 <div class="row">
-                                    
+
                                     <img id="product--main-image" src="{{ $product->images_url[0] }}"
                                         data-zoom-image="{{ $product->images_url[0] }}" />
 
@@ -62,10 +62,12 @@
                                     <span class="font-weight-bold">Product Code:</span>
                                     {{ $product->product_code }}
                                 </div>
-                                <div>
-                                    <span class="font-weight-bold">Brand:</span>
-                                    {{ $product->brand->name }}
-                                </div>
+                                @if ($product->brand)
+                                    <div>
+                                        <span class="font-weight-bold">Brand:</span>
+                                        {{ $product->brand->name }}
+                                    </div>
+                                @endif
                                 <div>
                                     <span class="font-weight-bold">Stock Available:</span>
                                     {{ $product->stock }}
@@ -100,14 +102,10 @@
 
                                     <div class="social-icons social-icons-sm">
                                         <span class="font-weight-bold social-label">Share:</span>
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i
-                                                class="icon-pinterest"></i></a>
+                                        <a href="javascript:fbshareCurrentPage()" class="social-icon"
+                                            data-platform="facebook" title="Facebook"><i class="icon-facebook-f"></i></a>
+                                        <a href="javascript:twitterShareCurrentPage()" class="social-icon"
+                                            title="Twitter"><i class="icon-twitter"></i></a>
                                     </div>
                                 </div><!-- End .product-details-footer -->
                             </div><!-- End .product-details -->
@@ -126,6 +124,21 @@
 
 @push('script')
     <script src="{{ asset('website/js/elevatezoom.js') }}"></script>
+    <script language="javascript">
+        function fbshareCurrentPage() {
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href) + "&t=" +
+                document.title, '',
+                'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            return false;
+        }
+
+        function twitterShareCurrentPage() {
+            window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(window.location.href) + "&t=" +
+                document.title, '',
+                'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+            return false;
+        }
+    </script>
     <script>
         window.onload = function() {
             $('.ratings-val').each(function() {
@@ -155,13 +168,12 @@
                             icon: 'success',
                             title: 'Added to cart.',
                             text: response.message,
-                            footer: '<a href="">Go to Cart <i class="icon-shopping-cart"></i>'
+                            footer: '<a href="/shop/cart">Go to Cart <i class="icon-shopping-cart"></i>'
                         });
                         $('.product_quantity').val('1');
                     }
                 });
             });
-
 
             if ($(window).width() > 550)
             // scrollZoom: true,
