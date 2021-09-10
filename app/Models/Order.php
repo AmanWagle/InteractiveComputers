@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $appends = ['created_at_format'];
 
-    protected $fillable = ['user_id', 'status', 'total', 'payment', 'payment_method', 'full_name', 'phone_number', 'secondary_phone_number', 'province', 'district', 'city', 'landmark', 'order_note'];
+    protected $fillable = ['user_id', 'status', 'total', 'payment', 'payment_method', 'is_processed', 'processed_cart', 'payment_ref', 'full_name', 'phone_number', 'secondary_phone_number', 'province', 'district', 'city', 'landmark', 'order_note'];
 
     public function order_items()
     {

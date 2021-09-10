@@ -42,9 +42,7 @@
                 </category-tree>
               </div>
 
-              <!-- End .widget -->
-
-              <div class="widget widget-collapsible">
+              <div v-if="brands.length" class="widget widget-collapsible">
                 <h3 class="widget-title">
                   <a
                     data-toggle="collapse"
@@ -71,6 +69,9 @@
                             name="brandRadio"
                             @change="onBrandChange(brand.slug)"
                             :id="brand.id"
+                            :checked="
+                              url_params['brand'] === brand.slug ? true : false
+                            "
                           />
                           <label class="custom-control-label" :for="brand.id">
                             <img
@@ -93,8 +94,10 @@
                 </div>
               </div>
 
-              <!-- Price collapse -->
-              <div class="widget widget-collapsible">
+              <div
+                v-if="Object.keys(products).length != 0"
+                class="widget widget-collapsible"
+              >
                 <h3 class="widget-title">
                   <a
                     data-toggle="collapse"
@@ -130,12 +133,11 @@
           </aside>
 
           <div class="col-lg-9">
-            <!-- Top toolbox -->
             <div class="toolbox">
               <div class="toolbox-left">
                 <div class="toolbox-info">
                   Showing
-                  <span>
+                  <span v-if="Object.keys(products).length != 0">
                     {{
                       this.products.from +
                       ` to ` +
@@ -144,6 +146,7 @@
                       this.products.total
                     }}
                   </span>
+                  <span v-else> 0 </span>
                   Results
                 </div>
               </div>
@@ -171,9 +174,9 @@
               </div>
             </div>
 
-            <div class="products mb-3">
+            <!-- if product is present in object -->
+            <div v-if="Object.keys(products).length != 0" class="products mb-3">
               <div class="row justify-content-center">
-                <!-- For each product -->
                 <div
                   v-for="product in products.data"
                   :key="product.id"
@@ -193,26 +196,7 @@
                           class="product-image"
                         />
                       </a>
-
-                      <!-- <div class="product-action-vertical">
-                        <a
-                          href="popup/quickView.html"
-                          class="btn-product-icon btn-quickview"
-                          title="Quick view"
-                          ><span>Quick view</span></a
-                        >
-                      </div>
-
-                      <div class="product-action">
-                        <a
-                          href="#"
-                          class="btn-product btn-cart"
-                          title="Add to cart"
-                          ><span>add to cart</span></a
-                        >
-                      </div> -->
                     </figure>
-                    <!-- End .product-media -->
 
                     <div class="product-body">
                       <div class="product-cat">
@@ -259,6 +243,13 @@
                 </div>
               </div>
             </div>
+            <!-- if the product object is empty -->
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <img width="50%" src="/images/not_found_image.png" alt="not found image">
+              <h3>No Results Found!!</h3>
+              <p style="font-size: 20px;">Sorry, we couldn't find any matching results.</p>
+            </div>
+
             <!-- pagination -->
             <advanced-laravel-vue-paginate
               :data="products"
@@ -266,13 +257,9 @@
               useStyle="bootstrap"
             />
           </div>
-          <!-- End .col-lg-9 -->
         </div>
-        <!-- End .row -->
       </div>
-      <!-- End .container -->
     </div>
-    <!-- End .page-content -->
   </div>
 </template>
 
@@ -346,7 +333,6 @@ export default {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const params = Object.fromEntries(urlSearchParams.entries());
       this.url_params = params;
-
       this.fetchProducts();
     },
 

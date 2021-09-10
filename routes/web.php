@@ -120,10 +120,15 @@ Route::prefix('shop')->group(function () {
 
     Route::delete('cart-item/{id}', [CartController::class, 'removeFromCart']);
 
-    Route::view('checkout', 'website/pages/checkout')->middleware('auth:web');
+    Route::view('checkout', 'website/pages/checkout')->middleware('auth:web')->name('checkout');
 });
 
 Route::prefix('checkout')->group(function () {
 
-    Route::post('/', [OrderController::class, 'store'])->middleware('auth:web')->name('checkout.store');
+    Route::post('/place-order', [OrderController::class, 'placeOrder'])->middleware('auth:web')->name('checkout.place-order');
+
+    Route::post('/process-order', [OrderController::class, 'processOrder'])->middleware('auth:web')->name('checkout.process-order');
+
+    Route::get('/payment-verify', [OrderController::class, 'verify_esewa_payment'])->middleware('auth:web')->name('checkout.payment-verify');
 });
+

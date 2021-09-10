@@ -252,7 +252,7 @@
                       <img
                         class="d-flex m-auto"
                         width="50%"
-                        src="/storage/images/static/cod.png"
+                        src="/images/cod.png"
                         alt="Cash On Delivery"
                       />
                     </label>
@@ -266,13 +266,12 @@
                       name="payment_method"
                       value="esewa"
                       id="esewa"
-                      disabled
                     />
                     <label class="form-check-label" for="esewa">
                       <img
                         class="d-flex m-auto"
                         width="50%"
-                        src="/storage/images/static/eSewa.png"
+                        src="/images/eSewa.png"
                         alt="eSewa"
                       />
                     </label>
@@ -289,6 +288,33 @@
                 </button>
               </div>
             </aside>
+
+            <!-- for esewa -->
+            <!-- <form action="https://uat.esewa.com.np/epay/main" method="POST">
+              <input :value="cart.total" name="tAmt" type="hidden" />
+              <input :value="cart.total" name="amt" type="hidden" />
+              <input value="0" name="txAmt" type="hidden" />
+              <input value="0" name="psc" type="hidden" />
+              <input value="0" name="pdc" type="hidden" />
+              <input value="EPAYTEST" name="scd" type="hidden" />
+              <input
+                value="ee2c3ca1-696b-4cc5-a6be-3123123fdaf"
+                name="pid"
+                type="hidden"
+              />
+              <input
+                value="http://localhost:8000/payment-verify?q=su"
+                type="hidden"
+                name="su"
+              />
+              <input
+                value="http://localhost:8000/payment-verify?q=su"
+                type="hidden"
+                name="fu"
+              />
+              <input value="Submit" type="submit" />
+            </form> -->
+
           </div>
         </div>
       </div>

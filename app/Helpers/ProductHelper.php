@@ -68,12 +68,16 @@ class ProductHelper
             $this->applyFilter($request->filter, $products);
         }
 
+        if ($request->has('q')) {
+            $this->applySearch($request->q, $products);
+        }
+
         $products = $products->paginate(20);
 
         //check if we need to get side bar or not
         if ($request->fetch_side_bar === "true") {
 
-            //Get brand present in these categories bor sidebar.
+            //Get brand present in these categories for sidebar.
             $brand_ids = array_unique($products->pluck('brand_id')->toArray());
             $brands = $this->getBrandSideBar($brand_ids);
 
@@ -91,6 +95,7 @@ class ProductHelper
     public function applyCategoryFilter($category_slug, $products)
     {
         $category = ProductCategory::where('slug', $category_slug)->first();
+
         $category_ids = array_merge($category->getAllChildren()->pluck('id')->toArray(), [$category->id]);
 
         $products = $products->whereIn('category_id', $category_ids);
@@ -134,9 +139,17 @@ class ProductHelper
         }
     }
 
+    public function applySearch($searchTerm, $products)
+    {
+        $products = $products->where('name', 'LIKE', "%{$searchTerm}%");
+
+        return $products;
+    }
+
     public function getBrandSideBar($brand_ids)
     {
         $brands = Brand::whereIn('id', $brand_ids)->get();
+
         return $brands;
     }
 }

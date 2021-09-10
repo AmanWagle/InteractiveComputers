@@ -34,7 +34,8 @@
                                     <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
                                 @endguest
                             </li>
-                            <form id="user-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <form id="user-logout-form" action="{{ route('logout') }}" method="POST"
+                                class="d-none">
                                 @csrf
                             </form>
                         </ul>
@@ -62,7 +63,7 @@
                 <div
                     class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="#" method="get">
+                    <form action="/shop" method="get">
                         <div class="header-search-wrapper search-wrapper-wide">
                             <label for="q" class="sr-only">Search</label>
                             <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..."
@@ -79,7 +80,7 @@
                     <cart-quickview></cart-quickview>
 
                     @auth
-                        <a href="{{route('user.profile')}}" class="wishlist-link">
+                        <a href="{{ route('user.profile') }}" class="wishlist-link">
                             <i class="icon-user"></i>
                             <span class="wishlist-txt">{{ auth()->user()->name }}</span></a></a>
                     @endauth
