@@ -7,10 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Interactive Computers</title>
+
+    {{-- For SEO --}}
+    {!! SEO::generate() !!}
+
+    {{-- <title>Interactive Computers</title>
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Interactive Computers">
-    <meta name="author" content="p-themes">
+    <meta name="author" content="p-themes"> --}}
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">

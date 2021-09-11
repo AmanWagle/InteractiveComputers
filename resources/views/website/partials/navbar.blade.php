@@ -54,8 +54,8 @@
                 </button>
 
                 <a href="{{ route('website.home') }}" class="logo">
-                    <h5>Interactive Computers</h5>
-                    {{-- <img src="assets/images/demos/demo-13/logo.png" alt="Interactive Computers Logo" width="105" height="25"> --}}
+                    {{-- <h5>Interactive World</h5> --}}
+                    <img src="/images/interactive_logo.png" alt="Interactive World Logo" width="190" height="25">
                 </a>
             </div>
 
