@@ -10,7 +10,7 @@ $banner_images = $banner_helper->getBannerImages('home-offer-banner-first');
             @foreach ($banner_images as $banner_image)
                 <div class="col-md-4">
                     <div class="banner banner-overlay">
-                        <a href="#">
+                        <a href="{{ $banner_image->link }}">
                             <img src="{{ $banner_image->banner_image_url }}" alt="Banner">
                         </a>
                     </div>

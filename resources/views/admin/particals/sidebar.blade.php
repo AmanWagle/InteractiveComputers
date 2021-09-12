@@ -20,15 +20,6 @@
                     </a>
                 </li>
 
-                {{-- <li class="sidebar-title">Menu</li>
-
-                <li class="sidebar-item {{ request()->segment(2) === 'pages' ? 'active' : '' }}">
-                    <a href="{{ route('admin.pages.index') }}" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Pages</span>
-                    </a>
-                </li> --}}
-
                 <li class="sidebar-title">eCommerce Catalog</li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'product-category' ? 'active' : '' }} ">
@@ -55,48 +46,36 @@
                 <li class="sidebar-title">Customer Response</li>
                 <li class="sidebar-item {{ request()->segment(2) === 'review' ? 'active' : '' }} ">
                     <a href="{{ route('admin.review.index') }}" class='sidebar-link'>
-                        <i class="fas fa-dice"></i>
+                        <i class="bi bi-chat-right-text-fill"></i>
                         <span>Product Reviews</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'order' ? 'active' : '' }} ">
                     <a href="{{ route('admin.order.index') }}" class='sidebar-link'>
-                        <i class="fas fa-dice"></i>
+                        <i class="bi bi-bag-check-fill"></i>
                         <span>Orders</span>
                     </a>
                 </li>
 
                 <li class="sidebar-title">Website Section</li>
-                <li class="sidebar-item {{ request()->segment(2) === 'page' ? 'active' : '' }} has-sub">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->segment(2) === 'page' ? 'active' : '' }}">
+                    <a href="{{ route('admin.page.index') }}" class='sidebar-link'>
                         <i class="bi bi-file-earmark-code-fill"></i>
                         <span>Pages</span>
                     </a>
-                    <ul class="submenu d-block">
-                        <li class="submenu-item {{ request()->segment(2) === 'page' ? 'active' : '' }}">
-                            <a href="{{ route('admin.page.index') }}">All Pages</a>
-                        </li>
-
-                        <li class="submenu-item ">
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="#">Page 2</a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'banner' ? 'active' : '' }} ">
                     <a href="{{ route('admin.banner.index') }}" class='sidebar-link'>
-                        <i class="bi bi-bag-fill"></i>
+                        <i class="bi bi-card-image"></i>
                         <span>Banners</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->segment(2) === 'profile' ? 'active' : '' }} ">
                     <a href="{{ route('admin.profile.show') }}" class='sidebar-link'>
-                        <i class="bi bi-bag-fill"></i>
+                        <i class="bi bi-person-fill"></i>
                         <span>Profile</span>
                     </a>
                 </li>

@@ -30,8 +30,8 @@ class OrderController extends Controller
         ];
         $request->validate($rules);
 
-        $response = $this->order_helper->placeOrder($request);
-        return $response;
+        $order_id = $this->order_helper->placeOrder($request);
+        return view('website.pages.order-success', compact('order_id'));
     }
 
     public function processOrder(Request $request)
@@ -79,7 +79,7 @@ class OrderController extends Controller
             'amt' => $processing_order->total,
             'rid' => $refId,
             'pid' => 'ICW.' . $order_id,
-            'scd' => 'EPAYTEST'
+            'scd' => env('ESEWA_MERCHANT_KEY')
         ];
 
         $curl = curl_init($url);
@@ -90,7 +90,7 @@ class OrderController extends Controller
         curl_close($curl);
 
         if (strpos($response, "Success") == true) {
-            
+
             $this->order_helper->completeOrder($processing_order, $refId);
 
             return view('website.pages.order-success', compact('order_id'));

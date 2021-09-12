@@ -172,6 +172,8 @@
                                                         <p style="font-weight: 800;">User Details</p>
                                                         <p><b>Name: </b>{{ $order->user->name }}</p>
                                                         <p><b>Email: </b>{{ $order->user->email }}</p>
+                                                        <p><b>Payment Method: </b>{{ $order->user->payment_method }}
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -215,9 +217,11 @@
                                 <tr>
                                     <td align="center"
                                         style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
+                                        <img src="/images/interactive_logo.png" alt="Interactive World Logo" width="190"
+                                            height="25">
                                         <p
                                             style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
-                                            Interactive Computer<br> Kathmandu </p>
+                                            Interactive World Pvt. Ltd.<br> Kathmandu </p>
                                     </td>
                                 </tr>
                             </table>

@@ -50,49 +50,76 @@ foreach ($active_cart->cart_items as $cart_item) {
                                     <!-- End .checkout-title -->
 
                                     <label>Full Name *</label>
-                                    <input type="text" class="form-control" name="full_name" placeholder="Full Name"
-                                        required />
+                                    <input type="text" id="full_name"
+                                        class="@error('full_name') is-invalid @enderror form-control" name="full_name"
+                                        placeholder="Full Name" required />
+                                    @error('full_name')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>Phone Number *</label>
-                                            <input type="number" class="form-control" name="phone_number"
-                                                placeholder="Phone Number" required />
+                                            <input type="number"
+                                                class="@error('phone_number') is-invalid @enderror form-control"
+                                                name="phone_number" placeholder="Phone Number" required />
+                                            @error('phone_number')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label>Secondary Phone Number</label>
                                             <input type="number" name="secondary_phone_number" required
-                                                class="form-control" placeholder="Secondary Phone Number" />
+                                                class="@error('secondary_phone_number') is-invalid @enderror form-control"
+                                                placeholder="Secondary Phone Number" />
+                                            @error('secondary_phone_number')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>Province *</label>
-                                            <input type="text" name="province" class="form-control" placeholder="Province"
-                                                required />
+                                            <input type="text" name="province"
+                                                class="@error('province') is-invalid @enderror form-control"
+                                                placeholder="Province" required />
+                                            @error('province')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-sm-6">
                                             <label>District *</label>
-                                            <input type="text" name="district" class="form-control" placeholder="District"
-                                                required />
+                                            <input type="text" name="district"
+                                                class="@error('district') is-invalid @enderror form-control"
+                                                placeholder="District" required />
+                                            @error('district')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label>City *</label>
-                                            <input type="text" class="form-control" name="city" placeholder="City"
-                                                required />
+                                            <input type="text" class="@error('city') is-invalid @enderror form-control"
+                                                name="city" placeholder="City" required />
+                                            @error('city')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <!-- End .col-sm-6 -->
 
                                         <div class="col-sm-6">
                                             <label>Landmark *</label>
-                                            <input type="text" name="landmark" class="form-control" required
+                                            <input type="text" name="landmark"
+                                                class="@error('landmark') is-invalid @enderror form-control" required
                                                 placeholder="Landmark" />
+                                            @error('landmark')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <!-- End .col-sm-6 -->
                                     </div>
@@ -225,56 +252,60 @@ foreach ($active_cart->cart_items as $cart_item) {
         $('#btn-place-order').click(async function(e) {
             let payment_method = $('[name=payment_method]:checked').val();
 
+            $("#form_process_order").validate();
+
             let form = $('#form_process_order')
             let formData = form.serialize();
 
             //for cash on delivery
             if (payment_method === 'cash_on_delivery') {
-
-                console.log(formData);
-
                 form.submit();
             }
             //for esewa 
             else if (payment_method === 'esewa') {
-                let response = await axios.post('/checkout/process-order', formData)
-                if (response.data.success === true) {
+                try {
+                    let response = await axios.post('/checkout/process-order', formData)
+                    if (response.data.success === true) {
 
-                    var order = response.data.data;
+                        var order = response.data.data;
 
-                    var path = "https://uat.esewa.com.np/epay/main";
-                    var params = {
-                        amt: order.total,
-                        psc: 0,
-                        pdc: 0,
-                        txAmt: 0,
-                        tAmt: order.total,
-                        pid: "ICW." + order.id,
-                        scd: "EPAYTEST",
-                        su: "http://localhost:8000/checkout/payment-verify?q=su",
-                        fu: "http://localhost:8000/checkout/payment-verify?q=fu"
-                    }
-
-                    post(path, params);
-
-                    function post(path, params) {
-                        var form_esewa = document.createElement("form");
-                        form_esewa.setAttribute("method", "POST");
-                        form_esewa.setAttribute("action", path);
-
-                        for (var key in params) {
-                            var hiddenField = document.createElement("input");
-                            hiddenField.setAttribute("type", "hidden");
-                            hiddenField.setAttribute("name", key);
-                            hiddenField.setAttribute("value", params[key]);
-                            form_esewa.appendChild(hiddenField);
+                        var path = "https://uat.esewa.com.np/epay/main";
+                        var params = {
+                            amt: order.total,
+                            psc: 0,
+                            pdc: 0,
+                            txAmt: 0,
+                            tAmt: order.total,
+                            pid: "ICW." + order.id,
+                            scd: "{{ env('ESEWA_MERCHANT_KEY') }}",
+                            su: "http://localhost:8000/checkout/payment-verify?q=su",
+                            fu: "http://localhost:8000/checkout/payment-verify?q=fu"
                         }
 
-                        document.body.appendChild(form_esewa);
-                        form_esewa.submit();
-                    }
+                        post(path, params);
 
+                        function post(path, params) {
+                            var form_esewa = document.createElement("form");
+                            form_esewa.setAttribute("method", "POST");
+                            form_esewa.setAttribute("action", path);
+
+                            for (var key in params) {
+                                var hiddenField = document.createElement("input");
+                                hiddenField.setAttribute("type", "hidden");
+                                hiddenField.setAttribute("name", key);
+                                hiddenField.setAttribute("value", params[key]);
+                                form_esewa.appendChild(hiddenField);
+                            }
+
+                            document.body.appendChild(form_esewa);
+                            form_esewa.submit();
+                        }
+
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
+
             }
         })
     </script>

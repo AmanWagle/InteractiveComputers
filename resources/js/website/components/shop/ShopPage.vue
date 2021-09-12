@@ -244,7 +244,7 @@
               </div>
             </div>
             <!-- if the product object is empty -->
-            <div class="d-flex flex-column justify-content-center align-items-center">
+            <div v-else class="d-flex flex-column justify-content-center align-items-center">
               <img width="50%" src="/images/not_found_image.png" alt="not found image">
               <h3>No Results Found!!</h3>
               <p style="font-size: 20px;">Sorry, we couldn't find any matching results.</p>

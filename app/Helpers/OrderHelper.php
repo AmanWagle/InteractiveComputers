@@ -73,7 +73,7 @@ class OrderHelper
 
         $this->notifyAdmin('amanwagle10@gmail.com', $order->id);
 
-        return response()->json(['success' => true, 'message' => 'Order Processed Successfully!']);
+        return $order->id;
     }
 
     //to save as draft
@@ -144,6 +144,8 @@ class OrderHelper
         //make cart status false
         $cart->status = 0;
         $cart->save();
+
+        $this->notifyAdmin('amanwagle10@gmail.com', $processing_order->id);
 
         return;
     }

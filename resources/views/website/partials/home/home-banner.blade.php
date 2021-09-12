@@ -8,9 +8,9 @@ $banner_images = $banner_helper->getBannerImages('home-slider-banner');
     <div class="intro-slider owl-carousel owl-simple owl-nav-inside">
 
         @foreach ($banner_images as $image)
-            <div class="intro-slide" style="background-image: url({{ $image->banner_image_url }});">
-                
-            </div>
+            <a href="{{ $image->link }}">
+                <div class="intro-slide" style="background-image: url({{ $image->banner_image_url }});"></div>
+            </a>
         @endforeach
 
         {{-- <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-1.png);">

@@ -1,50 +1,4 @@
 <header class="header header-10 header-intro-clearance">
-    <div class="header-top">
-        <div class="container">
-            <div class="header-left">
-                <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
-            </div>
-
-            <div class="header-right">
-
-                <ul class="top-menu">
-                    <li>
-                        <a href="#">Links</a>
-                        <ul>
-                            <li>
-                                <div class="header-dropdown">
-                                    <a href="#">Engligh</a>
-                                    <div class="header-menu">
-                                        <ul>
-                                            <li><a href="#">English</a></li>
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="login">
-                                @auth
-                                    <a href="javascript:void(0)"
-                                        onclick="event.preventDefault(); document.getElementById('user-logout-form').submit();">
-                                        Logout</a>
-                                @endauth
-
-                                @guest
-                                    <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
-                                @endguest
-                            </li>
-                            <form id="user-logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
-                                @csrf
-                            </form>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div class="header-middle">
         <div class="container">
             <div class="header-left">
@@ -161,8 +115,10 @@
                 </nav><!-- End .main-nav -->
             </div><!-- End .col-lg-9 -->
             <div class="header-right">
-                <i class="la la-lightbulb-o"></i>
-                <p>Clearance Up to 30% Off</span></p>
+                <ul class="menu sf-arrows">
+                    <li><a href="tel:014524879"><i class="icon-phone"></i>014524879</a></li>
+                    <li><a href="tel:014517055"><i class="icon-phone"></i>014517055</a></li>
+                </ul>
             </div>
         </div><!-- End .container -->
     </div><!-- End .header-bottom -->

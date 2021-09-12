@@ -27,6 +27,7 @@
     "dependencies": {
         "advanced-laravel-vue-paginate": "^0.3.0",
         "bootstrap-vue": "^2.21.2",
+        "jquery-validation": "^1.19.3",
         "liquor-tree": "^0.2.70",
         "sweetalert2": "^10.16.9",
         "vue": "^2.6.14",

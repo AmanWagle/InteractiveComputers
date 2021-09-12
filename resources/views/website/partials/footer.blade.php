@@ -1,156 +1,97 @@
 <footer class="footer footer-2">
-    <div class="icon-boxes-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="icon-box icon-box-side">
-                        <span class="icon-box-icon">
-                            <i class="icon-rocket"></i>
-                        </span>
-
-                        <div class="icon-box-content">
-                            <h3 class="icon-box-title">Free Shipping</h3><!-- End .icon-box-title -->
-                            <p>Orders $50 or more</p>
-                        </div><!-- End .icon-box-content -->
-                    </div><!-- End .icon-box -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-3">
-                    <div class="icon-box icon-box-side">
-                        <span class="icon-box-icon">
-                            <i class="icon-rotate-left"></i>
-                        </span>
-
-                        <div class="icon-box-content">
-                            <h3 class="icon-box-title">Free Returns</h3><!-- End .icon-box-title -->
-                            <p>Within 30 days</p>
-                        </div><!-- End .icon-box-content -->
-                    </div><!-- End .icon-box -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-3">
-                    <div class="icon-box icon-box-side">
-                        <span class="icon-box-icon">
-                            <i class="icon-info-circle"></i>
-                        </span>
-
-                        <div class="icon-box-content">
-                            <h3 class="icon-box-title">Get 20% Off 1 Item</h3><!-- End .icon-box-title -->
-                            <p>When you sign up</p>
-                        </div><!-- End .icon-box-content -->
-                    </div><!-- End .icon-box -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
-
-                <div class="col-sm-6 col-lg-3">
-                    <div class="icon-box icon-box-side">
-                        <span class="icon-box-icon">
-                            <i class="icon-life-ring"></i>
-                        </span>
-
-                        <div class="icon-box-content">
-                            <h3 class="icon-box-title">We Support</h3><!-- End .icon-box-title -->
-                            <p>24/7 amazing services</p>
-                        </div><!-- End .icon-box-content -->
-                    </div><!-- End .icon-box -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
-            </div><!-- End .row -->
-        </div><!-- End .container -->
-    </div><!-- End .icon-boxes-container -->
-
     <div class="footer-middle border-0">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-lg-6">
+                <div class="col-sm-12 col-lg-4">
                     <div class="widget widget-about">
-                        <h5>Interactive Computers</h5>
-                        <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate
-                            magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-                            porttitor, facilisis luctus, metus. </p>
+                        <img src="/images/interactive_logo.png" alt="Interactive World Logo" width="250" height="25">
+
+                        <div class="social-icons mt-2 mb-2">
+                            <a href="https://www.facebook.com/interactivecomputerworld" class="social-icon"
+                                target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                            {{-- <a href="#" class="social-icon" target="_blank" title="Twitter"><i
+                                    class="icon-twitter"></i></a> --}}
+                        </div><!-- End .social-icons -->
 
                         <div class="widget-about-info">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <span class="widget-about-title">Got Question? Call us 24/7</span>
-                                    <a href="tel:123456789">+0123 456 789</a>
-                                </div><!-- End .col-sm-6 -->
                                 <div class="col-sm-6 col-md-8">
-                                    <span class="widget-about-title">Payment Method</span>
-                                    <h5>eSewa</h5>
+                                    <span class="widget-about-title">Payment Methods</span>
+                                    <div>
+                                        <img class="d-inline" src="/images/eSewa.png" alt="eSewa" width="100">
+                                        <img class="d-inline" src="/images/cod.png" alt="eSewa" width="100">
+                                    </div>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
                         </div><!-- End .widget-about-info -->
                     </div><!-- End .widget about-widget -->
                 </div><!-- End .col-sm-12 col-lg-3 -->
 
-                <div class="col-sm-4 col-lg-2">
+                <div class="col-sm-4 col-lg-4">
                     <div class="widget">
-                        <h4 class="widget-title">Information</h4><!-- End .widget-title -->
+                        <h4 class="widget-title">Contact Us</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="about.html">About Molla</a></li>
-                            <li><a href="#">How to shop on Molla</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="login.html">Log in</a></li>
+                            <li><a href="tel:014524879"><i class="icon-phone">&nbsp;</i>014524879</a></li>
+                            <li><a href="tel:014517055"><i class="icon-phone">&nbsp;</i>014517055</a></li>
+                            <li><a href="mailto: abc@example.com"><i
+                                        class="icon-envelope">&nbsp;</i>interactivecomputerworld@gmail.com</a></li>
+                            <li><a href="#"><i class="icon-map-marker">&nbsp;</i>Putalisadak, Kathmandu</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-4 col-lg-3 -->
 
-                <div class="col-sm-4 col-lg-2">
+                {{-- <div class="col-sm-4 col-lg-2">
                     <div class="widget">
-                        <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+                        <h4 class="widget-title">Information</h4>
 
                         <ul class="widget-list">
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Money-back guarantee!</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Terms and conditions</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                        </ul><!-- End .widget-list -->
-                    </div><!-- End .widget -->
-                </div><!-- End .col-sm-4 col-lg-3 -->
+                        </ul>
+                    </div>
+                </div> --}}
 
-                <div class="col-sm-4 col-lg-2">
+                <div class="col-sm-4 col-lg-4">
                     <div class="widget">
                         <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="cart.html">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li> @auth
+                                    <a href="{{ route('user.profile') }}">
+                                        <span class="wishlist-txt">Profile</span></a></a>
+                                @endauth
+
+                                @guest
+                                    <a href="#signin-modal" data-toggle="modal">
+                                        <span class="wishlist-txt">Sign in / Sign up</span></a>
+                                @endguest
+                            </li>
+                            <li><a href="{{ route('cart') }}">View Cart</a></li>
+                            <li><a href="{{ route('user.profile.all-orders') }}">Track My Order</a></li>
                         </ul>
                     </div>
                 </div>
+                <p>Buy a laptop in Nepal can be a tough job. Due to the small market, computer stores always bring just
+                    a few models of laptops and all with limited stock. So chances of finding a laptop that fits your
+                    requirements are feeble. And if you further look at the laptop price in Nepal, you will be shocked
+                    to see it being exorbitantly high. Limited availability and the high price of the laptops has
+                    definitely created an inconvenience amongst the customers. With a view to solving this problem, Interactive
+                    World Pvt Ltd was established.</p>
             </div>
         </div>
     </div>
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © 2021 Interactive Computers. ALL RIGHTS RESERVED.</p>
+            <p class="footer-copyright">Copyright © 2021 Interactive World Pvt. Ltd. ALL RIGHTS RESERVED.</p>
 
             <div class="social-icons social-icons-color">
                 <p>Crafted with &#10084;&#65039; by <a href="https://amanwagle.com.np" target="_blank">
-                    <b class="text-primary">AMAN WAGLE</b></a>
+                        <b class="text-primary">AMAN WAGLE</b></a>
                 </p>
             </div>
-
-            {{-- <div class="social-icons social-icons-color">
-                <span class="social-label">Social Media</span>
-                <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i
-                        class="icon-facebook-f"></i></a>
-                <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i
-                        class="icon-twitter"></i></a>
-                <a href="#" class="social-icon social-instagram" title="Instagram" target="_blank"><i
-                        class="icon-instagram"></i></a>
-                <a href="#" class="social-icon social-youtube" title="Youtube" target="_blank"><i
-                        class="icon-youtube"></i></a>
-                <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i
-                        class="icon-pinterest"></i></a>
-            </div> --}}
         </div>
     </div>
 </footer>
@@ -184,5 +125,11 @@
             event.preventDefault();
             document.getElementById('email-verification-form').submit();
         });
+
+        $(document).on('click', '.on_mobile_nav_close', function() {
+            event.preventDefault();
+            $('body').removeClass('mmenu-active');
+            $('.menu-toggler').removeClass('active');
+        })
     </script>
 @endpush

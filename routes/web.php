@@ -97,7 +97,7 @@ Route::prefix('product')->group(function () {
 });
 
 Route::prefix('profile')->group(function () {
-    Route::get('/', [UserProfileController::class, 'index'])->middleware(['auth:web', 'verified'])->name('user.profile');
+    Route::get('/', [UserProfileController::class, 'index'])->middleware(['auth:web'])->name('user.profile');
     Route::put('/', [UserProfileController::class, 'update'])->middleware('auth:web')->name('user.profile.update');
     Route::get('/security', [UserProfileController::class, 'security'])->middleware('auth:web')->name('user.profile.security');
     Route::put('/update-password', [UserProfileController::class, 'updatePassword'])->middleware('auth:web')->name('user.profile.update-password');
@@ -114,13 +114,13 @@ Route::prefix('shop')->group(function () {
 
     Route::get('get-products', [ShopController::class, 'getProducts']);
 
-    Route::view('cart', 'website/pages/cart');
+    Route::view('cart', 'website/pages/cart')->name('cart');
 
     Route::get('cart-items', [CartController::class, 'getCartItems']);
 
     Route::delete('cart-item/{id}', [CartController::class, 'removeFromCart']);
 
-    Route::view('checkout', 'website/pages/checkout')->middleware('auth:web')->name('checkout');
+    Route::view('checkout', 'website/pages/checkout')->middleware('auth:web', 'verified')->name('checkout');
 });
 
 Route::prefix('checkout')->group(function () {
