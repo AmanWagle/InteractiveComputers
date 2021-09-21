@@ -62,7 +62,7 @@
                         aria-expanded="true" data-display="static" title="Browse Categories">
                         Browse Categories
                     </a>
-                    <div class="dropdown-menu {{ request()->segment(1) === null ? 'show' : '' }}">
+                    <div class="dropdown-menu">
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
                                 @foreach ($product_categories as $category)

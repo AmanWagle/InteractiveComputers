@@ -22349,20 +22349,20 @@ a:focus {
 
 .intro-slider-container,
 .intro-slide {
-    height: 360px;
+    height: 150px;
     background-color: #fafafa
 }
 
 .intro-slider-container .owl-simple .owl-nav [class*='owl-'],
 .intro-slide .owl-simple .owl-nav [class*='owl-'] {
-    top: 52%
+    top: 50%
 }
 
 .intro-slide {
     display: flex;
     align-items: center;
     background-size: cover;
-    background-position: 60% center
+    background-position: 50% center
 }
 
 .intro-content {
@@ -23110,7 +23110,7 @@ a:focus {
 
     .intro-slider-container,
     .intro-slide {
-        height: 400px
+        height: 270px
     }
 
     .intro-subtitle {
@@ -23176,7 +23176,7 @@ a:focus {
 
     .intro-slider-container,
     .intro-slide {
-        height: 440px
+        height: 500px
     }
 
     .intro-content .btn {

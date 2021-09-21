@@ -123,6 +123,7 @@ jQuery(document).ready(function ($) {
 
 	$('.intro-slider').owlCarousel({
 		"nav": false,
+		"autoplay":true,
 		"items": 1,
 		"responsive": {
 			"992": {
