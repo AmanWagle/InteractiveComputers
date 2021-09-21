@@ -43,13 +43,22 @@
 
     @include('website.partials.mobile-menu')
 
-    <!-- Load Facebook SDK for JavaScript -->
+    <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
     <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "525572577543433");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
         window.fbAsyncInit = function() {
             FB.init({
                 xfbml: true,
-                version: 'v11.0'
+                version: 'v12.0'
             });
         };
 
@@ -62,10 +71,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-
-    <!-- Your Chat Plugin code -->
-    <div class="fb-customerchat" attribution="install_email" attribution_version="biz_inbox" page_id="397217257777847">
-    </div>
 
     <script src="{{ asset('website/js/app.js') }}"></script>
 
