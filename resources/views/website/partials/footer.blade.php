@@ -32,10 +32,9 @@
                         <h4 class="widget-title">Contact Us</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="tel:014524879"><i class="icon-phone">&nbsp;</i>014524879</a></li>
-                            <li><a href="tel:014517055"><i class="icon-phone">&nbsp;</i>014517055</a></li>
-                            <li><a href="mailto: abc@example.com"><i
-                                        class="icon-envelope">&nbsp;</i>interactivecomputerworld@gmail.com</a></li>
+                            <li><a href="tel:9851073892"><i class="icon-phone">&nbsp;</i>9851073892</a></li>
+                            <li><a href="mailto: manandharrajeev@gmail.com"><i
+                                        class="icon-envelope">&nbsp;</i>manandharrajeev@gmail.com</a></li>
                             <li><a href="#"><i class="icon-map-marker">&nbsp;</i>Putalisadak, Kathmandu</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
@@ -77,7 +76,8 @@
                     a few models of laptops and all with limited stock. So chances of finding a laptop that fits your
                     requirements are feeble. And if you further look at the laptop price in Nepal, you will be shocked
                     to see it being exorbitantly high. Limited availability and the high price of the laptops has
-                    definitely created an inconvenience amongst the customers. With a view to solving this problem, Interactive
+                    definitely created an inconvenience amongst the customers. With a view to solving this problem,
+                    Interactive
                     World Pvt Ltd was established.</p>
             </div>
         </div>

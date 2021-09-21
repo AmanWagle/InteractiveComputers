@@ -116,8 +116,7 @@
             </div><!-- End .col-lg-9 -->
             <div class="header-right">
                 <ul class="menu sf-arrows">
-                    <li><a href="tel:014524879"><i class="icon-phone"></i>014524879</a></li>
-                    <li><a href="tel:014517055"><i class="icon-phone"></i>014517055</a></li>
+                    <li><a href="tel:9851073892"><i class="icon-phone"></i>9851073892</a></li>
                 </ul>
             </div>
         </div><!-- End .container -->
