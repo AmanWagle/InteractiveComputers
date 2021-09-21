@@ -679,6 +679,12 @@ blockquote.text-white cite span {
     height: auto;
 }
 
+@media screen and (max-width: 576px) {
+    .logo img {
+        max-width: 65% !important;
+    }
+}
+
 .header-top {
     font-weight: 300;
     font-size: 1.3rem;
